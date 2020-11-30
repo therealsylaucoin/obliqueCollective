@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+//Variables
+//Fonts
+$fontHeader: 'Noto Serif', serif;
+$font: 'Roboto', sans-serif;
+
+//Colours
+$black: #0A0908; //rgb 10, 9, 8
+$white: #f0f3f5; //rgb 240, 243, 245
+$yellow: #d1f444; //rgb 209, 244, 68
+$blue: #0034AD; //rgb 0, 52, 173
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: $font;
+    line-height: 1.5;
+    font-size: 1.8rem;
+}
+
+h1, h2, h3 {
+    font-family: $fontHeader;
+}
+
+h2, h3 {
+    font-size: 2.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.wrapper {
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.app {
+    text-align: center;
+}
+
+button {
+    margin: 25px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: $white;
+    color: $black;
+    width: 250px;
+    height: 350px;
+    border-radius: 20px;
+    padding: 25px;
+    border: 2px solid $black;
+
+    * {
+        margin: 5px;
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+.about {
+    padding: 50px 0;
+
+    h3 {
+        margin: 25px 0;
+    }
+
+
+    article {
+        display: flex;
+        justify-content: space-evenly;
+        text-align: left;
+
+        div {
+            width: 30%;
+            margin: 25px;
+
+            p {
+                margin: 10px 0;
+                &:first-of-type {
+                    margin-left: 0;
+                }
+        
+                &:last-of-type {
+                    margin-right: 0;
+                }
+        
+                a {
+                    color: $blue;
+        
+                    &:hover,
+                    &:focus {
+                        background-color: $black;
+                        color: $yellow;
+                    }
+                }
+            }
+
+            blockquote, .quote {
+                margin: 10px;
+                font-weight: 500;
+            }
+        }
+    }
+}

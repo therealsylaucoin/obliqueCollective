@@ -1,0 +1,61 @@
+.contribute {
+    background-color: $black;
+    color: $white;
+
+    .intro {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding-bottom: 50px;
+
+        p, article {
+            padding: 10px;
+            text-align: left;
+        }
+    }
+
+    h3 {
+        padding: 50px 0;
+    }
+    
+
+    form {
+        font-size: 1.6rem;
+
+        textarea, button, input[type="text"] {
+            margin: 15px 0;
+        }
+
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        button{
+            background-color: $yellow;
+            color: $black;
+            border: 1px solid $black;
+
+            &:hover,
+            &focus {
+                background-color: $blue;
+                color: $white;
+            }
+        }
+    }
+}
+
+.randomCollective {
+    background-color: $yellow;
+    padding: 50px 0;
+
+    button {
+        background-color: $black;
+        color: $white;
+
+        &:hover,
+        &:focus {
+            background-color: $blue;
+        }
+    }
+
+}
