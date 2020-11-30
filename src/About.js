@@ -1,9 +1,11 @@
 //Using a function component for the About Section since it's purely presentational.
+
 const About = () => {
         return(
             <section id="about" className="about wrapper">
                 
                 <h3>About Oblique Strategies</h3>
+
 
                 <article>
                     

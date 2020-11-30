@@ -50,8 +50,6 @@ class Contribute extends Component{
 
     //Event handler to push the user input into the firebase array
     handleClick = () => {
-        //prevent default
-        // e.preventDefault();
         //Make reference to the database
         const dbref = firebase.database().ref();
         // push the author and strategy as an object
@@ -75,38 +73,51 @@ class Contribute extends Component{
 
                 <div className="intro wrapper">
                     
-                    <p className="aboutIntro">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum eum molestiae consequuntur vel in fuga optio ut, facilis labore, id maiores voluptatibus. Rerum commodi suscipit odit maxime aut similique, qui officia ut ex, incidunt odio atque deleniti laboriosam! Incidunt, deleniti eos consequuntur placeat magni officiis. d?</p>
+                    <div>
+                        <p className="aboutIntro">If you're like me, you've often turned to your friends, family members, mentors, and even strangers on the Internet to ask for the best advice they can give you when trying to solve a problem, or overcome a challenge. The Collective Strategies deck is just that! A collection of advice, from you, and anyone who wishes to share their most valued strategy. </p>
+                    
+                        <p className="aboutIntro">I hope that you find this deck just as useful as the origin Oblique Strategies, and that you will be inclined to share a piece of advice. I've included some tips in order to guide this process. </p>
+                    </div>
                 
                     <form className="card">
                 
                         <label className="srOnly" htmlFor="contributor">Your name</label>
+
                         <input type="text" id="contributor" onChange={this.authorInput} value={this.state.author} placeholder="Your name (optional)"></input>
                 
                         <label className="srOnly" htmlFor="strategy">Your strategy</label>
-                        <textarea maxLength="100" id="strategy" onChange={this.strategyInput} value={this.state.strategy} placeholder="Strategy (maximum characters X)"></textarea>
+
+                        <textarea maxLength="100" id="strategy" onChange={this.strategyInput} value={this.state.strategy} placeholder="Strategy (maximum characters 100)"></textarea>
                 
         
                         <button 
 
-                        onClick={() => {
+                        onClick={(e) => {
+                            //prevent default
+                            e.preventDefault();
                             if(this.state.strategy === ''){
-                            alert('You cannot contribute an empty strategy.')
+                                alert('You cannot contribute an empty strategy.')
                             }
-                            else if(window.confirm('You are adding the following strategy to the deck: ' + this.state.strategy) && this.state.strategy !== '')
-                            {this.handleClick()}}}>
-                        Add card to deck</button>
+
+                            else if(window.confirm('You are adding the following strategy to the deck: ' + this.state.strategy) && this.state.strategy !== ''){
+                                this.handleClick()
+                            }}}>
+
+                                Add strategy to deck
+                        </button>
 
                     </form>
                 
                     <article>
 
-                    <h4>How to Contribute to the Collective Deck</h4>
+                        <h4>Tips on contributing a Collective Strategy</h4>
 
-                        <p>1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga ea nesciunt sequi, eius temporibus porro voluptatem?</p>
+                        <p><h4>1. Contribute kindly</h4>Our goal is to create a high impact deck that many can enjoy. Let's provide advice in an inclusive manner by using  that is free from words, phrases or tones that reflect prejudiced, stereotyped or discriminatory views of particular people or groups.  </p>
             
-                        <p>2. Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                        <p><h4>2. Be a generalist</h4>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who the author is. Let's make our Collective deck just as accesible.</p>
             
-                        <p>3. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus non ut eos quis eius? Quos nemo expedita suscipit id at.</p>
+                        <p><h4>3. Avoid acronyms and jargon</h4>Writting in full words with clear and concise vocabulary will prevent fellow strategists from having to overthink the meaning of your strategy. And that's the goal!</p>
+
             
                     </article>
                 

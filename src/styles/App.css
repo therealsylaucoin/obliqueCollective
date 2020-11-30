@@ -251,7 +251,7 @@ body {
   font-size: 1.8rem;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: "Noto Serif", serif;
 }
 
@@ -439,6 +439,10 @@ footer {
 .contribute .intro p, .contribute .intro article {
   padding: 10px;
   text-align: left;
+}
+
+.contribute .intro article {
+  font-size: 1.6rem;
 }
 
 .contribute h3 {

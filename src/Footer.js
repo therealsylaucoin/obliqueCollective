@@ -1,5 +1,4 @@
 //Using a function component for the Footer since it's purely presentational.
-import { Fragment } from 'react';
 
 const Footer = () => {
         return(

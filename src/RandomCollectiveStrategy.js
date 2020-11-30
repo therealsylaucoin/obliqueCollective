@@ -15,7 +15,7 @@ class RandomCollectiveStrategy extends Component {
 
 
     //function to get a random card passing that random index + set state of the card
-    drawRandomStrategy = (array) => {
+    handleClick = (array) => {
         //Get a random index
         let randomIndex = Math.floor((Math.random() * array.length))
         console.log(array[randomIndex]);
@@ -50,7 +50,7 @@ class RandomCollectiveStrategy extends Component {
 
                 </div>
 
-                <button onClick={() => {this.drawRandomStrategy(this.props.array)}}>Draw Random Collective Strategy</button>
+                <button onClick={() => {this.handleClick(this.props.array)}}>Draw Random Collective Strategy</button>
             </section>
         )
     }

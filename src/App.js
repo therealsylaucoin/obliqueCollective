@@ -42,10 +42,10 @@ class App extends Component {
           edition: null, 
           strategy: ''}
     }
-}
+  }
 
 //Call the Oblique strategy API to get all the strategies
-componentDidMount(){
+  componentDidMount(){
     Axios({
         url: 'https://proxy.hackeryou.com',
         method: 'GET',
