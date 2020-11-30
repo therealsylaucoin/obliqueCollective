@@ -6,7 +6,7 @@ class Contribute extends Component{
     constructor() {
         super();
         this.state = {
-            //empty array in which collective cards will be pushed and from which a random collective card will be draw
+            //empty array in which collective cards will be pushed and from which a random collective card will be drawn
             strategyCollectiveArray: [],
             author: '',
             strategy: ''
@@ -22,23 +22,19 @@ class Contribute extends Component{
             const dbResult = data.val();
             console.log(dbResult);
 
-            //GETTING AN OBJECT - How to turn into an array!?!?
+            //GETTING AN OBJECT - Let's turn it into an array with onl;y the information we need: The values!
             //using Object.values to get only the values :)
             const dbArray = Object.values(dbResult);
             console.log('Using values', dbArray);
             
-            //SetState of the array to the array obtained by converting the firebase data object
+            //SetState of the array to the array obtained by converting the firebase data object (only the values)
             this.setState({
                 strategyCollectiveArray: dbArray
             })
         })
     }
 
-
-
-
     // Grab the input value of name when the user types and set the state
-//!!!!!!!!!!!!!!!TO DO - Set different state if input is blank!
     authorInput = (input) => {
         this.setState ({
             author: input.target.value 
@@ -52,20 +48,18 @@ class Contribute extends Component{
         })
     }
 
-
     //Event handler to push the user input into the firebase array
     handleClick = () => {
         //prevent default
         // e.preventDefault();
-        // e.stopPropagation()
         //Make reference to the database
         const dbref = firebase.database().ref();
-        // push the contributor and strategy as an object
+        // push the author and strategy as an object
+        //Because the author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
         dbref.push({
-            author: this.state.author,
+            author: this.state.author === '' ? 'Anonymous' : this.state.author,
             strategy: this.state.strategy
         });
-        // window.confirm('You added  the following strategy to the deck: ' + this.state.strategy);
         //clear the state - this will also clear ths input because we have binded it's value to the state
         this.setState({
             strategy: '',
@@ -93,6 +87,7 @@ class Contribute extends Component{
                 
         
                         <button 
+
                         onClick={() => {
                             if(this.state.strategy === ''){
                             alert('You cannot contribute an empty strategy.')

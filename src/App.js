@@ -2,9 +2,7 @@ import { Component } from 'react';
 import Axios from 'axios';
 import RandomStrategy from './RandomStrategy.js';
 import Header from './Header.js';
-import About from './About.js';
 import Contribute from './Contribute.js';
-// import RandomCollectiveStrategy from './RandomCollectiveStrategy.js';
 import Footer from './Footer.js';
 
 
@@ -37,7 +35,12 @@ class App extends Component {
     this.state = {
         //empty array from which a random card will be draw
         strategyArray: [],
-
+        //Empty error object for error handling - if the result is undefined, set state for the rror and pass it as props to RandomStrategy
+        errorApi: {
+          author: '',
+          cardnumber: null, 
+          edition: null, 
+          strategy: ''}
     }
 }
 
@@ -56,11 +59,21 @@ componentDidMount(){
         }
 
     }).then((result) => {
-        // setState to the array
+        // If successful, setState to the array
         this.setState({
             strategyArray: result.data
         })
         console.log(result.data);
+        //If unsuccessful:
+    }).catch(() => {
+      //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop.
+      this.setState({
+        errorApi: {
+          author: 'Unavailable',
+          cardnumber: null, 
+          edition: null, 
+          strategy: "Oops! We can't seem to reach the network right now. Scroll down to try the Collective deck."}
+      })
     })
 }
 
@@ -70,7 +83,9 @@ componentDidMount(){
 
         < Header />
 
-        < RandomStrategy strategyArray={this.state.strategyArray}/>
+        < RandomStrategy 
+          strategyArray={this.state.strategyArray}
+          errorMsg={this.state.errorApi}/>
 
         < Contribute />
 
