@@ -358,34 +358,6 @@ footer {
   padding: 15px 0;
 }
 
-.modal {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 100vh;
-}
-
-.modal button {
-  min-width: 100px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  color: #f0f3f5;
-  background-color: #0A0908;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
 .strategy {
   background-color: #0A0908;
   color: #f0f3f5;
@@ -482,12 +454,17 @@ footer {
   display: inline;
 }
 
+.contribute .intro .tips h4 {
+  color: #d1f444;
+}
+
 .contribute h3 {
   padding: 50px 0;
 }
 
 .contribute form {
   font-size: 1.6rem;
+  position: relative;
 }
 
 .contribute form textarea, .contribute form button, .contribute form input[type="text"] {
@@ -522,5 +499,26 @@ footer {
 
 .randomCollective button:hover, .randomCollective button:focus {
   background-color: #0034AD;
+}
+
+.modal {
+  color: #0034AD;
+  position: absolute;
+  right: -3%;
+}
+
+.modal button {
+  min-width: 100px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: #f0f3f5;
+  background-color: #0A0908;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.modal p {
+  text-align: center !important;
 }
 /*# sourceMappingURL=App.css.map */

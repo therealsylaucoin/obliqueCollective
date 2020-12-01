@@ -1,57 +1,76 @@
 import { Component } from 'react';
-//Props that im getting!
-    //this.props.strategy
-    //this.props.author
-    //this.props.showModal
 
+class Modal extends Component {
+    render() {
+        return (
 
+            <div className="modal card">
+            {/* Show the correct modal based on the tstate(props) of the strategy aka, if its empty, lets show the error modal, if its not empty, lets show the confirm modal */}
+            {
+                this.props.strategy === ''
+                    ? < Error 
+                        toggle={this.props.toggle}/>
+            
+                    : < Confirm 
+                        strategy={this.props.strategy}
+                        pushToFirebase={this.props.pushToFirebase}
+                        toggle={this.props.toggle}/> 
+            }
+            
+            </div>
+        );
+        
+    }
+}
 
+//Error message for when the user has not entered any text in the strategy but clicks the button
+class Error extends Component {
+    //clickHandle to close the modal
 
+    render() {
+        return (
+            <div>
+                <p>Oops! You must enter a strategy in order to contribute.</p>
 
+                <button 
+                //  Click handler - function to setState for showModal of App - passed to to chil as props
+                    onClick={this.props.toggle}>
+                        
+                        Okay
+                </button>
 
+            </div>
+        );
+    }
+}
 
-//Inside of the modal:
-// IF Strategy is NOT EMPTY
-//Text confirmation of the strategy to add including this.props.strategy (pass in the strategy as prop)
-//Two buttons:
-//1.Cancel button - sets showModal state to false
-//2. Add to deck! button - a) sets showModal state to false b) pushe strategy to Firebase c) sets the strategy state to ''
-//IF STRATEGY IS EMPTY
-////Message letting the user know that they cant submit en empty strategy - sets showModal state to false
+//Confirmation message for when the user to mkae sure that they are contributing the right thing
+class Confirm extends Component {
 
-//Code taken from contriubute functions
-   //Event handler to push the user input into the firebase array
-    // handleClick = () => {
-    //     //Make reference to the database
-    //     const dbref = firebase.database().ref();
-    //     // push the author and strategy as an object
-    //     //Because the author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
-    //     dbref.push({
-    //         author: this.state.author === '' 
-    //             ? 'Anonymous' 
-    //             : this.state.author,
-    //         strategy: this.state.strategy
-    //     });
-    //     //clear the state - this will also clear ths input because we have binded it's value to the state
-    //     this.setState({
-    //         strategy: '',
-    //         author: ''
-    //     })
-    // }
+    render() {
+        return (
+            <div>
+                <p>You're about to submit this strategy:</p>
+                <h4>{this.props.strategy}</h4>
+                <button 
+                    // Click handler - function to setState for showModal of App - passed to to chil as props
+                    onClick={this.props.toggle}>
+                        
+                        Not Quite
+                </button>
 
-//Code taken from previousl click event in contribute
-  /* <button 
+                <button
+                //Click handler to push to user strategy to Firebase - push function passed to child as props
+                    onClick={this.props.pushToFirebase}>
+                        
+                        Okay
+                </button>
 
-                        onClick={(e) => {
-                            //prevent default
-                            e.preventDefault();
-                            if(this.state.strategy === ''){
-                                alert('You cannot contribute an empty strategy.')
-                            }
-
-                            else if(window.confirm('You are adding the following strategy to the deck: ' + this.state.strategy) && this.state.strategy !== ''){
-                                this.handleClick()
-                            }}}> */
+                
+            </div>
+        );
+    }
+}
 
 
 export default Modal;

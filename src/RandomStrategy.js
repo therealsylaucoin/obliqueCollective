@@ -1,5 +1,6 @@
 import { Component, Fragment } from 'react';
 import About from './About.js'
+import { FaTwitter } from 'react-icons/fa';
 
 class RandomStrategy extends Component {
     constructor(){
@@ -52,13 +53,22 @@ class RandomStrategy extends Component {
                             {/* The edition + card number OR collective + author */}
                             <p>{this.state.randomStrategy.edition === null 
                                 ? '' 
-                                : 'Edition: ' +     this.state.randomStrategy.edition}
+                                : 'Edition: ' + this.state.randomStrategy.edition}
                             </p>
 
                             <p>{this.state.randomStrategy.cardnumber === null 
-                                ? '' : 'Card no. '    
-                                +  this.state.randomStrategy.cardnumber}
+                                ? '' 
+                                : 'Card no. ' + this.state.randomStrategy.cardnumber }
                             </p>
+
+                            {this.state.randomStrategy.strategy !== ''
+                                ? <a
+                                    href={`https://twitter.com/intent/tweet?text=${this.state.randomStrategy.strategy} %23obliquestrategies&url=https://obliquecollective.netlify.app`}
+                                    target="_blank" 
+                                    rel="noreferrer">
+                                    < FaTwitter/>
+                                </a>
+                                : null}
 
                         </div>
             

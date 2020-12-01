@@ -21,6 +21,10 @@
             h4, p {
                 display: inline;
             }
+
+            h4 {
+                color: $yellow;
+            }
         }
 
     }
@@ -32,6 +36,7 @@
 
     form {
         font-size: 1.6rem;
+        position: relative;
 
         textarea, button, input[type="text"] {
             margin: 15px 0;

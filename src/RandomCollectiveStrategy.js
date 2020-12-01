@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { FaTwitter } from 'react-icons/fa';
 
 class RandomCollectiveStrategy extends Component {
     constructor(){
@@ -54,6 +55,15 @@ class RandomCollectiveStrategy extends Component {
                             ? '' 
                             : 'Card no. ' + this.state.cardnumber + ' out of ' + this.state.totalDeckCount}
                         </p>
+
+                        {this.state.randomCollectiveStrategy.strategy !== ''
+                                ? <a
+                                    href={`https://twitter.com/intent/tweet?text=${this.state.randomCollectiveStrategy.strategy} %23collectivestrategies&url=https://obliquecollective.netlify.app`}
+                                    target="_blank" 
+                                    rel="noreferrer">
+                                    < FaTwitter/>
+                                </a>
+                                : null}
 
                     </div>
 
