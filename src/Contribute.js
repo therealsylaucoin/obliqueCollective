@@ -67,7 +67,8 @@ class Contribute extends Component{
         //clear the state - this will also clear ths input because we have binded it's value to the state
         this.setState({
             strategy: '',
-            author: ''
+            author: '',
+            showModal: this.state.showModal === false ? true : false
         })
     }
 
