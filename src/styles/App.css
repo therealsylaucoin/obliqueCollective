@@ -474,6 +474,14 @@ footer {
   font-size: 1.6rem;
 }
 
+.contribute .intro .tips {
+  margin: 10px 0;
+}
+
+.contribute .intro .tips h4, .contribute .intro .tips p {
+  display: inline;
+}
+
 .contribute h3 {
   padding: 50px 0;
 }

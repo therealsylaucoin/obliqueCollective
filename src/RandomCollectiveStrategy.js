@@ -37,20 +37,34 @@ class RandomCollectiveStrategy extends Component {
 
                 <div className="card">
                     {/*The strategy: */}
-                    <h2>{this.state.randomCollectiveStrategy.strategy === '' ? 'Draw a card from the Collective Strategies deck' : this.state.randomCollectiveStrategy.strategy}</h2>
+                    <h2>{this.state.randomCollectiveStrategy.strategy === '' 
+                        ? 'Draw a card from the Collective Strategies deck' 
+                        : this.state.randomCollectiveStrategy.strategy}
+                    </h2>
                 
                     <div>
                         {/* The contributor name */}
-                        <p>{this.state.randomCollectiveStrategy.author === '' ? '' : 'Contributed by: ' + this.state.randomCollectiveStrategy.author}</p>
+                        <p>{this.state.randomCollectiveStrategy.author === '' 
+                            ? '' 
+                            : 'Contributed by: ' + this.state.randomCollectiveStrategy.author}
+                        </p>
                 
                         {/* {The card number and deck total} */}
-                        <p>{this.state.cardnumber === null ? '' : 'Card no. ' + this.state.cardnumber + ' out of ' + this.state.totalDeckCount}</p>
+                        <p>{this.state.cardnumber === null 
+                            ? '' 
+                            : 'Card no. ' + this.state.cardnumber + ' out of ' + this.state.totalDeckCount}
+                        </p>
 
                     </div>
 
                 </div>
 
-                <button onClick={() => {this.handleClick(this.props.array)}}>Draw Random Collective Strategy</button>
+                <button onClick={() => {
+                    this.handleClick(this.props.array)}}>
+
+                        Draw Random Collective Strategy
+                </button>
+                
             </section>
         )
     }

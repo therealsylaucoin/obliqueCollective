@@ -2,6 +2,7 @@ import { Component } from 'react';
 import firebase from './firebase.js';
 import RandomCollectiveStrategy from './RandomCollectiveStrategy.js'
 
+
 class Contribute extends Component{
     constructor() {
         super();
@@ -9,7 +10,9 @@ class Contribute extends Component{
             //empty array in which collective cards will be pushed and from which a random collective card will be drawn
             strategyCollectiveArray: [],
             author: '',
-            strategy: ''
+            strategy: '',
+            //showModal state which will change from false to true to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
+            showModal: false,
         }
     }
 
@@ -48,14 +51,16 @@ class Contribute extends Component{
         })
     }
 
-    //Event handler to push the user input into the firebase array
-    handleClick = () => {
+    // Event handler to push the user input into the firebase array
+    pushToFirebase = () => {
         //Make reference to the database
         const dbref = firebase.database().ref();
         // push the author and strategy as an object
         //Because the author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
         dbref.push({
-            author: this.state.author === '' ? 'Anonymous' : this.state.author,
+            author: this.state.author === '' 
+                ? 'Anonymous' 
+                : this.state.author,
             strategy: this.state.strategy
         });
         //clear the state - this will also clear ths input because we have binded it's value to the state
@@ -65,6 +70,15 @@ class Contribute extends Component{
         })
     }
 
+    //declare a function that will change the state of showModal 
+    modalToggle = (e) =>{
+        e.preventDefault();
+        this.setState({
+            showModal: this.state.showModal === false ? true : false,
+        })
+    }
+
+    
     render(){
         return(
             <section className="contribute" id="contribute">
@@ -81,27 +95,36 @@ class Contribute extends Component{
                 
                     <form className="card">
                 
-                        <label className="srOnly" htmlFor="contributor">Your name</label>
+                        <label 
+                            className="srOnly" 
+                            htmlFor="contributor">
 
-                        <input type="text" id="contributor" onChange={this.authorInput} value={this.state.author} placeholder="Your name (optional)"></input>
-                
-                        <label className="srOnly" htmlFor="strategy">Your strategy</label>
+                                Your name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="contributor" 
+                            onChange={this.authorInput} 
+                            value={this.state.author} 
+                            placeholder="Your name (optional)">
+                        </input>
 
-                        <textarea maxLength="100" id="strategy" onChange={this.strategyInput} value={this.state.strategy} placeholder="Strategy (maximum characters 100)"></textarea>
-                
-        
-                        <button 
+                        <label 
+                            className="srOnly" 
+                            htmlFor="strategy">
 
-                        onClick={(e) => {
-                            //prevent default
-                            e.preventDefault();
-                            if(this.state.strategy === ''){
-                                alert('You cannot contribute an empty strategy.')
-                            }
+                                Your strategy
+                        </label>
+                        <textarea
+                            maxLength="100" 
+                            id="strategy" 
+                            onChange={this.strategyInput} 
+                            value={this.state.strategy} 
+                            placeholder="Strategy (maximum characters 100)">
+                        </textarea>
 
-                            else if(window.confirm('You are adding the following strategy to the deck: ' + this.state.strategy) && this.state.strategy !== ''){
-                                this.handleClick()
-                            }}}>
+
+                        <button onClick={this.modalToggle}>
 
                                 Add strategy to deck
                         </button>
@@ -112,23 +135,117 @@ class Contribute extends Component{
 
                         <h4>Tips on contributing a Collective Strategy</h4>
 
-                        <p><h4>1. Contribute kindly</h4>Our goal is to create a high impact deck that many can enjoy. Let's provide advice in an inclusive manner by using  that is free from words, phrases or tones that reflect prejudiced, stereotyped or discriminatory views of particular people or groups.  </p>
+                        <div className="tips">
+                            <h4>1. Contribute kindly |</h4>
+
+                            <p>Our goal is to create a high impact deck that many can enjoy. Let's provide advice in an inclusive manner by using  that is free from words, phrases or tones that reflect prejudiced, stereotyped or discriminatory views of particular people or groups.</p>
+                        </div>
             
-                        <p><h4>2. Be a generalist</h4>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who the author is. Let's make our Collective deck just as accesible.</p>
-            
-                        <p><h4>3. Avoid acronyms and jargon</h4>Writting in full words with clear and concise vocabulary will prevent fellow strategists from having to overthink the meaning of your strategy. And that's the goal!</p>
+                        <div className="tips">
+                            <h4>2. Be a generalist |</h4>
+
+                            <p>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who the author is. Let's make our Collective deck just as accesible.</p>
+                        </div>
+
+                        <div className="tips">
+                            <h4>3. Avoid acronyms and jargon |</h4>
+                    
+                            <p>Writing in full words with clear and concise vocabulary will prevent fellow strategists from having to overthink the meaning of your strategy. And that's the goal!</p>
+                        </div>
 
             
                     </article>
                 
                 </div>
                 
-                < RandomCollectiveStrategy array={this.state.strategyCollectiveArray}/>
+                {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state.strategy === empty, display the error modal, else, display the confirm modal*/}
+                {this.state.showModal === true 
+                    ? < Modal 
+                        strategy={this.state.strategy}
+                        toggle={this.modalToggle}
+                        pushToFirebase={this.pushToFirebase}/>
+                    : null}
+                
+                < RandomCollectiveStrategy 
+                    array={this.state.strategyCollectiveArray}/> 
 
             </section>
         )
     }
 }
+
+class Modal extends Component {
+    render() {
+        return (
+
+            <div>
+            {/* Show the correct modal based on the tstate(props) of the strategy aka, if its empty, lets show the error modal, if its not empty, lets show the confirm modal */}
+            {
+                this.props.strategy === ''
+                    ? < Error 
+                        toggle={this.props.toggle}/>
+            
+                    : < Confirm 
+                        strategy={this.props.strategy}
+                        pushToFirebase={this.props.pushToFirebase}
+                        toggle={this.props.toggle}/> 
+            }
+            
+            </div>
+        );
+        
+    }
+}
+
+//Error message for when the user has not entered any text in the strategy but clicks the button
+class Error extends Component {
+    //clickHandle to close the modal
+
+    render() {
+        return (
+            <div>
+                <p>Oops! You cannot contribute an empty strategy.</p>
+
+                <button 
+                //  Click handler - function to setState for showModal of App - passed to to chil as props
+                    onClick={this.props.toggle}>
+                        
+                        Okay
+                </button>
+
+            </div>
+        );
+    }
+}
+
+//Confirmation message for when the user to mkae sure that they are contributing the right thing
+class Confirm extends Component {
+
+    render() {
+        return (
+            <div>
+                <p>You're about to submit this strategy: {this.props.strategy}.</p>
+                <button 
+                    // Click handler - function to setState for showModal of App - passed to to chil as props
+                    onClick={this.props.toggle}>
+                        
+                        Not Quite
+                </button>
+
+                <button
+                //Click handler to push to user strategy to Firebase - push function passed to child as props
+                    onClick={this.props.pushToFirebase}>
+                        
+                        Okay
+                </button>
+
+                
+            </div>
+        );
+    }
+}
+
+
 
 export default Contribute;
 

@@ -4,7 +4,6 @@ import RandomStrategy from './RandomStrategy.js';
 import Header from './Header.js';
 import Contribute from './Contribute.js';
 import Footer from './Footer.js';
-import ModalContainer from './ModalContainer.js'
 
 // Oblique Strategies:
 // 1. SETUP: The app state is an empty array, so that later we can set the state to the array we will get from the API call
@@ -58,11 +57,13 @@ class App extends Component {
         }
 
     }).then((result) => {
+
         // If successful, setState to the array
         this.setState({
             strategyArray: result.data
         })
         console.log(result.data);
+        
         //If unsuccessful:
     }).catch(() => {
       //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop.
@@ -89,8 +90,6 @@ class App extends Component {
         < Contribute />
 
         < Footer />
-
-        < ModalContainer />
 
       </div>
     );

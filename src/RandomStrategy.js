@@ -25,7 +25,9 @@ class RandomStrategy extends Component {
         const errorMsg = this.props.errorMsg;
         this.setState({
             //Error Handling - If the result is undefined, set the state to the errorMsg passed as props.
-            randomStrategy: array[randomIndex] !== undefined ? array[randomIndex] : errorMsg
+            randomStrategy: array[randomIndex] !== undefined 
+                ? array[randomIndex] 
+                : errorMsg
         })
     }
 
@@ -40,17 +42,32 @@ class RandomStrategy extends Component {
                     <div className="card">
                         {/* !!! ERROR HANDLE IN CASE NO STRATEGY!!!! this.props.errorMsg */ }
                         {/*The strategy: */}
-                        <h2>{this.state.randomStrategy.strategy === '' ? 'Over One Hundred Worthwhile Dilemmas' : this.state.randomStrategy.strategy}</h2>
+                        <h2>{this.state.randomStrategy.strategy === '' 
+                            ? 'Over One Hundred Worthwhile Dilemmas' 
+                            : this.state.randomStrategy.strategy}
+                        </h2>
             
                         <div>
+
                             {/* The edition + card number OR collective + author */}
-                            <p>{this.state.randomStrategy.edition === null ? '' : 'Edition: ' +     this.state.randomStrategy.edition}</p>
-                            <p>{this.state.randomStrategy.cardnumber === null ? '' : 'Card no. '    +  this.state.randomStrategy.cardnumber}</p>
+                            <p>{this.state.randomStrategy.edition === null 
+                                ? '' 
+                                : 'Edition: ' +     this.state.randomStrategy.edition}
+                            </p>
+
+                            <p>{this.state.randomStrategy.cardnumber === null 
+                                ? '' : 'Card no. '    
+                                +  this.state.randomStrategy.cardnumber}
+                            </p>
+
                         </div>
             
                     </div>
             
-                    <button onClick={() => {this.handleClick(this.props.strategyArray)}}>Draw Random Strategy</button>
+                    <button onClick={() => {this.handleClick(this.props.strategyArray)}}>
+                        
+                        Draw Random Strategy
+                    </button>
             
                 </section>
             
