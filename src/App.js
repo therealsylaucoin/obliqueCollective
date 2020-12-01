@@ -4,8 +4,7 @@ import RandomStrategy from './RandomStrategy.js';
 import Header from './Header.js';
 import Contribute from './Contribute.js';
 import Footer from './Footer.js';
-
-
+import ModalContainer from './ModalContainer.js'
 
 // Oblique Strategies:
 // 1. SETUP: The app state is an empty array, so that later we can set the state to the array we will get from the API call
@@ -90,6 +89,8 @@ class App extends Component {
         < Contribute />
 
         < Footer />
+
+        < ModalContainer />
 
       </div>
     );

@@ -2,12 +2,12 @@
 
 const About = () => {
         return(
-            <section id="about" className="about wrapper">
+            <section id="about" className="about">
                 
                 <h3>About Oblique Strategies</h3>
 
 
-                <article>
+                <article className="wrapper">
                     
                     <div>
                         
