@@ -80,6 +80,19 @@ button {
     padding: 25px;
     border: 2px solid $black;
 
+    h2 {
+        font-size: 2rem;
+    }
+
+    a {
+        color: $black;
+
+        &:hover,
+        &:focus {
+            color: $blue;
+        }
+    }
+
     * {
         margin: 5px;
     }

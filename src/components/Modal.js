@@ -73,4 +73,7 @@ class Confirm extends Component {
 }
 
 
+
+
+
 export default Modal;

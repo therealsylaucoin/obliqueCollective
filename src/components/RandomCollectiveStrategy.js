@@ -5,7 +5,7 @@ class RandomCollectiveStrategy extends Component {
     constructor(){
         super();
         this.state = {
-            //Empty opbject to store the random strategy drawn from the deck
+            //Empty object to store the random strategy drawn from the deck
             randomCollectiveStrategy: {
                 author: '',
                 strategy: ''},
@@ -17,17 +17,26 @@ class RandomCollectiveStrategy extends Component {
 
     //function to get a random card passing that random index + set state of the card
     handleClick = (array) => {
-        //Get a random index
-        let randomIndex = Math.floor((Math.random() * array.length))
-        console.log(array[randomIndex]);
-        //setState of the randomStrategy
-        this.setState({
-            randomCollectiveStrategy: array[randomIndex],
-            cardnumber: randomIndex + 1,
-            totalDeckCount: array.length
-        })
-        console.log(this.state.cardnumber);
-        console.log(this.state.totalDeckCount);
+        //Error handle in case we get no data from Firebase. 
+        if(array.length === 0){
+            // setState to an error object in order to display the message on the card
+            this.setState({
+                randomCollectiveStrategy: {
+                    author: '',
+                    strategy: "Oops! It looks like we can't connect to our database right now. Tweet this message to let us know. Thx! @sylaucoin"  
+                }
+            })
+        //If we get data
+        } else {
+            //Get a random index
+            let randomIndex = Math.floor((Math.random() * array.length))
+            //setState of the randomStrategy
+            this.setState({
+                randomCollectiveStrategy: array[randomIndex],
+                cardnumber: randomIndex + 1,
+                totalDeckCount: array.length
+            })
+        }
     }
 
 
@@ -57,13 +66,15 @@ class RandomCollectiveStrategy extends Component {
                         </p>
 
                         {this.state.randomCollectiveStrategy.strategy !== ''
-                                ? <a
-                                    href={`https://twitter.com/intent/tweet?text=${this.state.randomCollectiveStrategy.strategy} %23collectivestrategies&url=https://obliquecollective.netlify.app`}
-                                    target="_blank" 
-                                    rel="noreferrer">
+                            ? <a
+                                href={`https://twitter.com/intent/tweet?text=${this.state.randomCollectiveStrategy.strategy} %23collectivestrategies&url=https://obliquecollective.netlify.app`}
+                                target="_blank" 
+                                rel="noreferrer"
+                                aria-label="Post to Twitter" 
+                                >
                                     < FaTwitter/>
                                 </a>
-                                : null}
+                            : null}
 
                     </div>
 
@@ -72,7 +83,7 @@ class RandomCollectiveStrategy extends Component {
                 <button onClick={() => {
                     this.handleClick(this.props.array)}}>
 
-                        Draw Random Collective Strategy
+                        Draw random Collective Strategy
                 </button>
                 
             </section>

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import firebase from './firebase.js';
+import firebase from '../firebase.js';
 import RandomCollectiveStrategy from './RandomCollectiveStrategy.js';
 import Modal from './Modal.js';
 
@@ -14,25 +14,22 @@ class Contribute extends Component{
             strategy: '',
             //showModal state which will change from false to true to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
             showModal: false,
+            placeholder: 'Write your strategy here (maximum 100 characters)'
         }
     }
 
     componentDidMount(){
-        //Store the database reference in a variable
-        const dbref = firebase.database().ref();
-
-        //Obtain the data object from the Firebase using 'value' and the val() Firebase method and setState to that array
-        dbref.on('value', (data) => {
-            const dbResult = data.val();
-            console.log(dbResult);
-
-            //GETTING AN OBJECT - Let's turn it into an array with onl;y the information we need: The values!
+            //Store the database reference in a variable
+            const dbref = firebase.database().ref();
+            //Obtain the data object from the Firebase using 'value' and the val()Firebase method and setState to that array
+            dbref.on('value', (data) => {
+                const dbResult = data.val();
+            //GETTING AN OBJECT - Let's turn it into an array with onl;y theinformation we need: The values!
             //using Object.values to get only the values :)
-            const dbArray = Object.values(dbResult);
-            console.log('Using values', dbArray);
-            
-            //SetState of the array to the array obtained by converting the firebase data object (only the values)
-            this.setState({
+                const dbArray = Object.values(dbResult);
+        
+            //SetState of the array to the array obtained by converting thefirebase data object (only the values)
+                this.setState({
                 strategyCollectiveArray: dbArray
             })
         })
@@ -68,7 +65,8 @@ class Contribute extends Component{
         this.setState({
             strategy: '',
             author: '',
-            showModal: this.state.showModal === false ? true : false
+            showModal: this.state.showModal === false ? true : false,
+            placeholder: 'Thank you for your submission. Your strategy should be available shortly in the Collective Strategies deck.'
         })
     }
 
@@ -122,7 +120,7 @@ class Contribute extends Component{
                             id="strategy" 
                             onChange={this.strategyInput} 
                             value={this.state.strategy} 
-                            placeholder="Strategy (maximum characters 100)">
+                            placeholder={this.state.placeholder}>
                         </textarea>
 
 

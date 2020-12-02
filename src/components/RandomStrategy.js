@@ -20,7 +20,6 @@ class RandomStrategy extends Component {
     handleClick = (array) => {
         //Get a random index
         let randomIndex = Math.floor((Math.random() * array.length))
-        console.log(array[randomIndex]);
         //setState of the randomStrategy 
         //Save the error message passed as props as a variable
         const errorMsg = this.props.errorMsg;
@@ -65,9 +64,11 @@ class RandomStrategy extends Component {
                                 ? <a
                                     href={`https://twitter.com/intent/tweet?text=${this.state.randomStrategy.strategy} %23obliquestrategies&url=https://obliquecollective.netlify.app`}
                                     target="_blank" 
-                                    rel="noreferrer">
-                                    < FaTwitter/>
-                                </a>
+                                    rel="noreferrer"
+                                    aria-label="Post to Twitter" 
+                                    >
+                                        < FaTwitter/>
+                                    </a>
                                 : null}
 
                         </div>
@@ -76,7 +77,7 @@ class RandomStrategy extends Component {
             
                     <button onClick={() => {this.handleClick(this.props.strategyArray)}}>
                         
-                        Draw Random Strategy
+                        Draw random Strategy
                     </button>
             
                 </section>

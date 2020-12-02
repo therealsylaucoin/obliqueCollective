@@ -12,8 +12,7 @@ const firebaseConfig = {
     projectId: "collective-strategies-app",
     storageBucket: "collective-strategies-app.appspot.com",
     messagingSenderId: "204319135638",
-    appId: "1:204319135638:web:b8171910ec79903b682fb7"
-
+    appId: "1:204319135638:web:b8171910ec79903b682fb7",
 };
 
 // Initialize Firebase

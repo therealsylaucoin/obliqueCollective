@@ -24,8 +24,6 @@ import Footer from './Footer.js';
 // 	On submit, the createdCard object is pushed into the existing cards array (on Firebase)
 // 	(Give these cards a distinctive look (background colour, perhaps) to visually differenciate them from the orignal cards in that deck)
 
-// 2.Allow users to "like" individual strategies when they are drawn (only for the collective deck).
-
 
 class App extends Component {
   constructor() {
@@ -62,17 +60,16 @@ class App extends Component {
         this.setState({
             strategyArray: result.data
         })
-        console.log(result.data);
         
         //If unsuccessful:
     }).catch(() => {
-      //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop.
+      //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop to random strategy.
       this.setState({
         errorApi: {
           author: 'Unavailable',
           cardnumber: null, 
           edition: null, 
-          strategy: "Oops! We can't seem to reach the network right now. Scroll down to try the Collective deck."}
+          strategy: "Oops! We can't seem to reach the network right now. Tweet this message to let us know. Thx! @sylaucoin"}
       })
     })
 }
