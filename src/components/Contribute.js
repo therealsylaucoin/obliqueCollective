@@ -33,7 +33,6 @@ class Contribute extends Component{
             this.setState({
             strategyCollectiveArray: dbArray
             })
-            console.log(this.state.strategyCollectiveArray)
             this.filterStrategies();
         })
     }
@@ -47,7 +46,6 @@ class Contribute extends Component{
         this.setState({
             strategyCollectiveApproved: approvedStrategies
         })
-        console.log(approvedStrategies);
     }
 
 
@@ -82,7 +80,7 @@ class Contribute extends Component{
             strategy: '',
             author: '',
             showModal: this.state.showModal === false ? true : false,
-            placeholder: 'Thank you for your submission. Your strategy should be available shortly in the Collective Strategies deck.'
+            placeholder: 'Thank you for your submission. Your strategy will be reviewed within the next 24hrs. Once approved, it will be available in the Collective Strategies deck.'
         })
     }
 
@@ -91,7 +89,7 @@ class Contribute extends Component{
     modalToggle = (e) =>{
         e.preventDefault();
         this.setState({
-            showModal: this.state.showModal === false ? true : false,
+            showModal: this.state.showModal ? false : true
         })
     }
 
