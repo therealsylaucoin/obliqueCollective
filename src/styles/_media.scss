@@ -1,0 +1,30 @@
+@media (max-width: 1000px) {
+    .contribute{
+
+        .intro {
+            grid-template-columns: (1fr);
+        }
+
+        article {
+
+            display: flex;
+
+            *   {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .contribute {
+
+        article {
+            flex-direction: column;
+
+            h4 {
+                text-align: center;
+            }
+        }
+    }
+}

@@ -25,8 +25,17 @@ class Header extends Component {
 
                     {/* Expression to display the nav   */}
                     {this.state.showNav
-                        ? < NavItems /> 
-                        : < FaBars onClick={this.handleClick} />}
+                        ? < NavItems click={this.handleClick}/> 
+                        :   <div className="navBurger">
+                                <label className="srOnly">
+                                    Menu
+                                </label>
+                                <button 
+                                    onClick={this.handleClick}>
+                                    < FaBars  />
+                                </button>
+
+                            </div>}
                         
                     
                 </div>
@@ -39,36 +48,36 @@ class Header extends Component {
 }
 
 
-const NavItems = () => {
+class NavItems extends Component {
 
-    return(
+    render(){
+        return(
 
-        <nav>
-            < FaTimes />
-            <ul>
-            
-                <li>
-                    <a href="#about">About</a>
-                </li>
-            
-                <li>
-                    <a href="#contribute">Add to Deck</a>
-                </li>
-            
-                <li>
-                    <a href="#randomCollective">Collective Strategies</a>
-                </li>
-            
-                <li>
-                    <a href="https://twitter.com/sylaucoin" target="_blank" rel="noreferrer">Get In Touch</a>
-                </li>
-            
-            </ul>
-            
-        </nav>
-
-    )
-    
+            <nav>
+                < FaTimes onClick={this.props.click}/>
+                <ul>
+                
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                
+                    <li>
+                        <a href="#contribute">Add to Deck</a>
+                    </li>
+                
+                    <li>
+                        <a href="#randomCollective">Collective Strategies</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://twitter.com/sylaucoin" target="_blank" rel="noreferrer">Get In Touch</a>
+                    </li>
+                
+                </ul>
+                
+            </nav>
+        )   
+    }
 }
 
 export default Header;

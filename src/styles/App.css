@@ -347,6 +347,15 @@ header a:hover, header a:focus, footer a:hover, footer a:focus {
   background-color: #f0f3f5;
 }
 
+header button {
+  background-color: #0A0908;
+  color: #f0f3f5;
+  position: fixed;
+  left: 0;
+  z-index: 20;
+  margin: 5px !important;
+}
+
 header nav {
   background-color: #0A0908;
   opacity: 0.9;
@@ -358,9 +367,9 @@ header nav {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   padding: 10px;
 }
 
@@ -373,9 +382,9 @@ header nav ul {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 header nav ul li {
@@ -569,5 +578,32 @@ footer {
 
 .modal p {
   text-align: center !important;
+}
+
+@media (max-width: 1000px) {
+  .contribute .intro {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .contribute article {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .contribute article * {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .contribute article {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .contribute article h4 {
+    text-align: center;
+  }
 }
 /*# sourceMappingURL=App.css.map */
