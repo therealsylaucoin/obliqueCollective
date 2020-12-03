@@ -18,26 +18,29 @@ class RandomCollectiveStrategy extends Component {
 
     //function to get a random card passing that random index + set state of the card
     handleClick = (array) => {
-        //Error handle in case we get no data from Firebase. 
-        if(array.length === 0){
-            // setState to an error object in order to display the message on the card
-            this.setState({
-                randomCollectiveStrategy: {
-                    author: '',
-                    strategy: "Oops! It looks like we can't connect to our database right now. Tweet this message to let us know. Thx! @sylaucoin"  
-                }
-            })
-        //If we get data
-        } else {
-            //Get a random index
-            let randomIndex = Math.floor((Math.random() * array.length))
-            //setState of the randomStrategy
-            this.setState({
-                randomCollectiveStrategy: array[randomIndex],
-                cardnumber: randomIndex + 1,
-                totalDeckCount: array.length
-            })
-        }
+        //setTimeout to make the transitionna bit less sudden
+        setTimeout(() => {
+             //Error handle in case we get no data from Firebase. 
+            if(array.length === 0){
+                // setState to an error object in order to display the message on the card
+                this.setState({
+                    randomCollectiveStrategy: {
+                        author: '',
+                        strategy: "Oops! It looks like we can't connect to our database right now. Tweet this message to let us know. Thx! @sylaucoin"  
+                    }
+                })
+            //If we get data
+            }   else {
+                //Get a random index
+                let randomIndex = Math.floor((Math.random() * array.length))
+                //setState of the randomStrategy
+                this.setState({
+                    randomCollectiveStrategy: array[randomIndex],
+                    cardnumber: randomIndex + 1,
+                    totalDeckCount: array.length
+                })
+            }
+        }, 300)
     }
 
 
@@ -48,7 +51,7 @@ class RandomCollectiveStrategy extends Component {
 
                     <h3>Collective Strategies</h3>
                     {/* //Get the relevent Strategy info and print it on the page! */}
-                    <div className="card">
+                    <div className="card wrapper">
                         {/*The strategy: */}
                         <h2>{this.state.randomCollectiveStrategy.strategy
                             ? this.state.randomCollectiveStrategy.strategy

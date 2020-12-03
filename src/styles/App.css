@@ -292,6 +292,7 @@ button {
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
 }
 
 .card {
@@ -339,7 +340,7 @@ header, footer {
 
 header a, footer a {
   color: #d1f444;
-  padding: 5px;
+  padding: 10px;
 }
 
 header a:hover, header a:focus, footer a:hover, footer a:focus {
@@ -351,9 +352,16 @@ header button {
   background-color: #0A0908;
   color: #f0f3f5;
   position: fixed;
+  top: 10px;
   left: 0;
   z-index: 20;
   margin: 5px !important;
+}
+
+header a {
+  display: block;
+  width: 200px;
+  text-align: left;
 }
 
 header nav {
@@ -370,10 +378,11 @@ header nav {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  padding: 10px;
+  z-index: 10;
 }
 
 header nav ul {
+  padding-top: 50px;
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -388,13 +397,7 @@ header nav ul {
 }
 
 header nav ul li {
-  padding: 5px;
   color: #d1f444;
-}
-
-header nav ul li:hover, header nav ul li:focus {
-  color: #0034AD;
-  background-color: #f0f3f5;
 }
 
 header h1 {
@@ -493,6 +496,7 @@ footer {
   font-size: 1.6rem;
   display: -ms-grid;
   display: grid;
+  gap: 10px;
   -ms-grid-columns: (1fr)[3];
       grid-template-columns: repeat(3, 1fr);
   padding-bottom: 50px;
@@ -504,7 +508,7 @@ footer {
 }
 
 .contribute .intro .tips {
-  margin: 10px 0;
+  margin: 10px;
 }
 
 .contribute .intro .tips h4, .contribute .intro .tips p {
@@ -522,6 +526,7 @@ footer {
 
 .contribute form textarea, .contribute form button, .contribute form input[type="text"] {
   margin: 15px 0;
+  padding: 5px;
 }
 
 .contribute form textarea {
@@ -585,25 +590,61 @@ footer {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
-  .contribute article {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
+  .contribute .intro form {
+    margin: 20px auto;
   }
-  .contribute article * {
-    padding: 10px;
+  .contribute .aboutIntro {
+    margin: 0 10px;
   }
-}
-
-@media (max-width: 800px) {
   .contribute article {
+    display: -ms-grid;
+    display: grid;
+    gap: 10px;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-rows: 15% 85%;
+        grid-template-rows: 15% 85%;
+  }
+  .contribute article h4 {
+    text-align: center;
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    grid-column-end: 4;
+    margin: 20px;
+  }
+  .contribute article .tips h4 {
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  .contribute article .tips h4 {
+    display: block !important;
+    text-align: left;
+  }
+  .about article {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .contribute article h4 {
-    text-align: center;
+  .about article div {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 800px) {
+  .contribute article {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    -ms-grid-rows: 10% 30% 30% 30%;
+        grid-template-rows: 10% 30% 30% 30%;
+  }
+  .contribute article .tips {
+    -ms-grid-column: 1;
+        grid-column-start: 1;
+    grid-column-end: 4;
   }
 }
 /*# sourceMappingURL=App.css.map */

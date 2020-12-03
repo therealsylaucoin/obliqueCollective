@@ -5,6 +5,8 @@ import RandomStrategy from './RandomStrategy.js';
 import Contribute from './Contribute.js';
 import About from './About.js'
 import Footer from './Footer.js';
+import AnimationTest from './AnimationTest.js'
+
 
 // Oblique Strategies:
 // 1. SETUP: The app state is an empty array, so that later we can set the state to the array we will get from the API call
@@ -62,7 +64,7 @@ class App extends Component {
             strategyArray: result.data
         })
         
-        //If unsuccessful:
+      //If unsuccessful:
     }).catch(() => {
       //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop to random strategy.
       this.setState({
@@ -80,6 +82,7 @@ class App extends Component {
 
       <div className="app">
 
+
       < Header />
 
       <main>
@@ -95,6 +98,8 @@ class App extends Component {
       </main>
 
       < Footer />
+
+      < AnimationTest />
 
     </div>
 

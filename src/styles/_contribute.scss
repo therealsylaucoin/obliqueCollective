@@ -11,6 +11,7 @@
     .intro {
         font-size: 1.6rem;
         display: grid;
+        gap: 10px;
         grid-template-columns: repeat(3, 1fr);
         padding-bottom: 50px;
 
@@ -20,7 +21,7 @@
         }
 
         .tips {
-            margin: 10px 0;
+            margin: 10px;
             h4, p {
                 display: inline;
             }
@@ -40,6 +41,7 @@
 
         textarea, button, input[type="text"] {
             margin: 15px 0;
+            padding: 5px;
         }
 
         textarea {

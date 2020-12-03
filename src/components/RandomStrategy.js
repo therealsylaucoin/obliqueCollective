@@ -17,17 +17,21 @@ class RandomStrategy extends Component {
 
     //function to get a random card passing that random index + set state of the card
     handleClick = (array) => {
-        //Get a random index
+        //setTimeout to 
+        setTimeout(() => { 
+              //Get a random index
         let randomIndex = Math.floor((Math.random() * array.length))
         //setState of the randomStrategy 
         //Save the error message passed as props as a variable
         const errorMsg = this.props.errorMsg;
+
         this.setState({
             //Error Handling - If the result is undefined, set the state to the errorMsg passed as props.
             randomStrategy: array[randomIndex] !== undefined 
                 ? array[randomIndex] 
                 : errorMsg
         })
+        }, 300);
     }
 
 

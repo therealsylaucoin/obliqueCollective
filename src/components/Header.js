@@ -54,15 +54,15 @@ class NavItems extends Component {
         return(
 
             <nav>
-                < FaTimes onClick={this.props.click}/>
+                <button onClick={this.props.click}>
+                < FaTimes />
+                </button>
+                
                 <ul>
                 
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
                 
                     <li>
-                        <a href="#contribute">Add to Deck</a>
+                        <a href="#intro">Add to Deck</a>
                     </li>
                 
                     <li>
@@ -71,6 +71,10 @@ class NavItems extends Component {
                 
                     <li>
                         <a href="https://twitter.com/sylaucoin" target="_blank" rel="noreferrer">Get In Touch</a>
+                    </li>
+
+                    <li>
+                        <a href="#about">About</a>
                     </li>
                 
                 </ul>

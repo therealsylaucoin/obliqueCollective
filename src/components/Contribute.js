@@ -70,6 +70,7 @@ class Contribute extends Component{
         // push the author and strategy as an object
         //Because the author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
         dbref.push({
+            approved: false,
             author: this.state.author === '' 
                 ? 'Anonymous' 
                 : this.state.author,
@@ -88,27 +89,29 @@ class Contribute extends Component{
     //declare a function that will change the state of showModal 
     modalToggle = (e) =>{
         e.preventDefault();
-        this.setState({
-            showModal: this.state.showModal ? false : true
-        })
+        setTimeout(() => {
+            this.setState({
+                showModal: this.state.showModal ? false : true
+            })
+        }, 100)
     }
 
 
     render(){
         return(
-            <section className="contribute" id="contribute">
+            <section className="contribute">
 
-                <div>
+                <div id="intro">
                     
                     <h2>Add to Collective Strategies</h2>
                 
-                    <div className="intro wrapper">
+                    <div className="intro wrapper" >
 
                         <div>
 
-                            <p className="aboutIntro">If you're like me, you've often   turned to     your friends, family members, mentors, and even     strangers on the    Internet to ask for the best advice they    can give you when trying  to solve a problem, or overcome a    challenge. The Collective  Strategies deck is just that! A     collection of advice, from you, and  anyone who wishes to share     their most valued strategy. </p>
+                            <p className="aboutIntro">If you're like me, you've often turned to  your friends, family members, mentors, and even strangers on the Internet to ask for the best advice they can give you when trying  to solve a problem, or overcome a challenge. The Collective  Strategies deck is just that! A collection of advice, from you, and  anyone who wishes to share their most valued strategy. </p>
 
-                            <p className="aboutIntro">I hope that you find this deck just   as    useful as the origin Oblique Strategies, and that you   will be  inclined to share a piece of advice. I've included   some tips in  order to guide this process. </p>
+                            <p className="aboutIntro">I hope that you find this deck just as useful as the origin Oblique Strategies, and that you will be inclined to share a piece of advice. I've included some tips in  order to guide this process. </p>
 
                         </div>
 
@@ -145,7 +148,7 @@ class Contribute extends Component{
                             Add strategy to deck
                             </button>
 
-                            {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state.      strategy === empty, display the error modal, else, display  the    confirm modal*/}
+                            {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state. strategy === empty, display the error modal, else, display the confirm modal*/}
                             {this.state.showModal
                             ? < Modal
                                 strategy={this.state.strategy}
@@ -157,7 +160,7 @@ class Contribute extends Component{
                         
                         <article>
                         
-                            <h4>Tips on contributing a Collective Strategy</h4>
+                            <h4>Tips for contributing a Collective Strategy</h4>
                         
                             <div className="tips">
 
