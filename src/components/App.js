@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import Axios from 'axios';
-import RandomStrategy from './RandomStrategy.js';
 import Header from './Header.js';
+import RandomStrategy from './RandomStrategy.js';
 import Contribute from './Contribute.js';
+import About from './About.js'
 import Footer from './Footer.js';
 
 // Oblique Strategies:
@@ -76,19 +77,27 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="app">
 
-        < Header />
+      < Header />
 
-        < RandomStrategy 
+      <main>
+
+        < RandomStrategy
           strategyArray={this.state.strategyArray}
           errorMsg={this.state.errorApi}/>
-
+      
         < Contribute />
 
-        < Footer />
+        < About />
+          
+      </main>
 
-      </div>
+      < Footer />
+
+    </div>
+
     );
   }
 }

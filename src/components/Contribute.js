@@ -8,8 +8,10 @@ class Contribute extends Component{
     constructor() {
         super();
         this.state = {
-            //empty array in which collective cards will be pushed and from which a random collective card will be drawn
+            //empty array in which collective cards will be pushed 
             strategyCollectiveArray: [],
+            //An empty array from which a random collective card will be drawn 
+            strategyCollectiveApproved: [],
             author: '',
             strategy: '',
             //showModal state which will change from false to true to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
@@ -19,21 +21,35 @@ class Contribute extends Component{
     }
 
     componentDidMount(){
-            //Store the database reference in a variable
-            const dbref = firebase.database().ref();
-            //Obtain the data object from the Firebase using 'value' and the val()Firebase method and setState to that array
-            dbref.on('value', (data) => {
-                const dbResult = data.val();
-            //GETTING AN OBJECT - Let's turn it into an array with onl;y theinformation we need: The values!
+        //Store the database reference in a variable
+        const dbref = firebase.database().ref();
+        //Obtain the data object from the Firebase using 'value' and the val(Firebase method and setState to that array
+        dbref.on('value', (data) => {
+            const dbResult = data.val();
+             //GETTING AN OBJECT - Let's turn it into an array with onl;ytheinformation we need: The values!
             //using Object.values to get only the values :)
-                const dbArray = Object.values(dbResult);
-        
-            //SetState of the array to the array obtained by converting thefirebase data object (only the values)
-                this.setState({
-                strategyCollectiveArray: dbArray
+            const dbArray = Object.values(dbResult);
+            //SetState of the array to the array obtained by convertingthefirebase data object (only the values)
+            this.setState({
+            strategyCollectiveArray: dbArray
             })
+            console.log(this.state.strategyCollectiveArray)
+            this.filterStrategies();
         })
     }
+
+    //function to filter the array and only get the approved cards (aka, approval = true)
+    filterStrategies = () => {
+        //store the approved strategies
+        const approvedStrategies = this.state.strategyCollectiveArray.filter((strategy) => {
+        return strategy.approved === true
+        })
+        this.setState({
+            strategyCollectiveApproved: approvedStrategies
+        })
+        console.log(approvedStrategies);
+    }
+
 
     // Grab the input value of name when the user types and set the state
     authorInput = (input) => {
@@ -49,7 +65,7 @@ class Contribute extends Component{
         })
     }
 
-    // Event handler to push the user input into the firebase array
+    // Function to push the user input into the firebase array
     pushToFirebase = () => {
         //Make reference to the database
         const dbref = firebase.database().ref();
@@ -70,6 +86,7 @@ class Contribute extends Component{
         })
     }
 
+
     //declare a function that will change the state of showModal 
     modalToggle = (e) =>{
         e.preventDefault();
@@ -78,103 +95,109 @@ class Contribute extends Component{
         })
     }
 
-    
+
     render(){
         return(
             <section className="contribute" id="contribute">
-                
-                <h3>Collective Strategies</h3>
 
-                <div className="intro wrapper">
+                <div>
                     
-                    <div>
-                        <p className="aboutIntro">If you're like me, you've often turned to your friends, family members, mentors, and even strangers on the Internet to ask for the best advice they can give you when trying to solve a problem, or overcome a challenge. The Collective Strategies deck is just that! A collection of advice, from you, and anyone who wishes to share their most valued strategy. </p>
-                    
-                        <p className="aboutIntro">I hope that you find this deck just as useful as the origin Oblique Strategies, and that you will be inclined to share a piece of advice. I've included some tips in order to guide this process. </p>
-                    </div>
+                    <h2>Add to Collective Strategies</h2>
                 
-                    <form className="card">
-                
-                        <label 
-                            className="srOnly" 
-                            htmlFor="contributor">
+                    <div className="intro wrapper">
 
-                                Your name
-                        </label>
-                        <input 
-                            type="text" 
-                            id="contributor" 
-                            onChange={this.authorInput} 
-                            value={this.state.author} 
-                            placeholder="Your name (optional)">
-                        </input>
+                        <div>
 
-                        <label 
-                            className="srOnly" 
-                            htmlFor="strategy">
+                            <p className="aboutIntro">If you're like me, you've often   turned to     your friends, family members, mentors, and even     strangers on the    Internet to ask for the best advice they    can give you when trying  to solve a problem, or overcome a    challenge. The Collective  Strategies deck is just that! A     collection of advice, from you, and  anyone who wishes to share     their most valued strategy. </p>
 
-                                Your strategy
-                        </label>
-                        <textarea
-                            maxLength="100" 
-                            id="strategy" 
-                            onChange={this.strategyInput} 
-                            value={this.state.strategy} 
-                            placeholder={this.state.placeholder}>
-                        </textarea>
+                            <p className="aboutIntro">I hope that you find this deck just   as    useful as the origin Oblique Strategies, and that you   will be  inclined to share a piece of advice. I've included   some tips in  order to guide this process. </p>
+
+                        </div>
+
+                        <form className="card">
+
+                            <label
+                                className="srOnly"
+                                htmlFor="contributor">
+                            Your name
+                            </label>
+                            <input
+                                type="text"
+                                id="contributor"
+                                onChange={this.authorInput}
+                                value={this.state.author}
+                                placeholder="Your name (optional)">
+                            </input>
+
+                            <label
+                                className="srOnly"
+                                htmlFor="strategy">
+                            Your strategy
+                            </label>
+                            <textarea
+                                maxLength="100"
+                                id="strategy"
+                                onChange={this.strategyInput}
+                                value={this.state.strategy}
+                                placeholder={this.state.placeholder}>
+                            </textarea>
 
 
-                        <button onClick={this.modalToggle}>
+                            <button onClick={this.modalToggle}>
+                            Add strategy to deck
+                            </button>
 
-                                Add strategy to deck
-                        </button>
-
-                        {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state.strategy === empty, display the error modal, else, display the confirm modal*/}
-                        {this.state.showModal === true 
-                            ? < Modal 
+                            {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state.      strategy === empty, display the error modal, else, display  the    confirm modal*/}
+                            {this.state.showModal
+                            ? < Modal
                                 strategy={this.state.strategy}
                                 toggle={this.modalToggle}
                                 pushToFirebase={this.pushToFirebase}/>
                             : null}
 
-                    </form>
-                
-                    <article>
+                        </form>
+                        
+                        <article>
+                        
+                            <h4>Tips on contributing a Collective Strategy</h4>
+                        
+                            <div className="tips">
 
-                        <h4>Tips on contributing a Collective Strategy</h4>
+                                <h4>1. Contribute kindly</h4>
+                        
+                                <p>Our goal is to create a high impact deck that many can enjoy. Let's provide advice in an inclusive manner by using that is free from words, phrases or tones that reflect prejudiced, stereotyped or discriminatory views of particular people or groups.</p>
 
-                        <div className="tips">
-                            <h4>1. Contribute kindly</h4>
+                            </div>
+                        
+                            <div className="tips">
 
-                            <p>Our goal is to create a high impact deck that many can enjoy. Let's provide advice in an inclusive manner by using  that is free from words, phrases or tones that reflect prejudiced, stereotyped or discriminatory views of particular people or groups.</p>
-                        </div>
-            
-                        <div className="tips">
-                            <h4>2. Be a generalist</h4>
+                                <h4>2. Be a generalist</h4>
+                        
+                                <p>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who  the author is. Let's make our Collective deck just as accesible.</p>
 
-                            <p>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who the author is. Let's make our Collective deck just as accesible.</p>
-                        </div>
+                            </div>
+                        
+                            <div className="tips">
+                        
+                                <h4>3. Avoid acronyms and jargon</h4>
+                        
+                                <p>Writing in full words with clear and concise vocabulary  will prevent fellow strategists from having to overthink the meaning of  your strategy. And that's the goal!</p>
 
-                        <div className="tips">
-                            <h4>3. Avoid acronyms and jargon</h4>
+                            </div>
+                        
+                        </article>
                     
-                            <p>Writing in full words with clear and concise vocabulary will prevent fellow strategists from having to overthink the meaning of your strategy. And that's the goal!</p>
-                        </div>
-
-            
-                    </article>
-                
+                    </div>
+                    
                 </div>
-                
+
                 < RandomCollectiveStrategy 
-                    array={this.state.strategyCollectiveArray}/> 
+                    array={this.state.strategyCollectiveApproved}/> 
 
             </section>
         )
     }
 }
-
-
 
 
 export default Contribute;

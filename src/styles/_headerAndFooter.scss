@@ -4,18 +4,21 @@ header, footer {
 
     nav {
         margin: 0 20px;
-        padding-bottom: 50px;
+        position: absolute;
+        right: 0;
     }
 
     h1 {
         margin: 0;
         font-size: 3.5rem;
-        padding-bottom: 25px;
+        padding: 50px 0 25px 0;
     }
 
     ul {
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
+        align-items: flex-end;
 
         li {
             padding: 20px 2.5px;

@@ -255,8 +255,12 @@ h1, h2, h3, h4 {
   font-family: "Noto Serif", serif;
 }
 
-h2, h3 {
+h2 {
   font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 3rem;
 }
 
 a {
@@ -313,6 +317,7 @@ button {
 
 .card h2 {
   font-size: 2rem;
+  padding: 00px 0 !important;
 }
 
 .card a {
@@ -334,22 +339,30 @@ header, footer {
 
 header nav, footer nav {
   margin: 0 20px;
-  padding-bottom: 50px;
+  position: absolute;
+  right: 0;
 }
 
 header h1, footer h1 {
   margin: 0;
   font-size: 3.5rem;
-  padding-bottom: 25px;
+  padding: 50px 0 25px 0;
 }
 
 header ul, footer ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 header ul li, footer ul li {
@@ -439,9 +452,21 @@ footer {
 .contribute {
   background-color: #0A0908;
   color: #f0f3f5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+}
+
+.contribute h2 {
+  padding: 50px 0;
 }
 
 .contribute .intro {
+  font-size: 1.6rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -454,10 +479,6 @@ footer {
   text-align: left;
 }
 
-.contribute .intro article {
-  font-size: 1.6rem;
-}
-
 .contribute .intro .tips {
   margin: 10px 0;
 }
@@ -468,10 +489,6 @@ footer {
 
 .contribute .intro .tips h4 {
   color: #d1f444;
-}
-
-.contribute h3 {
-  padding: 50px 0;
 }
 
 .contribute form {
@@ -502,6 +519,11 @@ footer {
 .randomCollective {
   background-color: #d1f444;
   padding: 50px 0;
+}
+
+.randomCollective h3 {
+  color: #0A0908;
+  padding-bottom: 50px;
 }
 
 .randomCollective button {

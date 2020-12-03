@@ -1,5 +1,4 @@
-import { Component, Fragment } from 'react';
-import About from './About.js'
+import { Component } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 
 class RandomStrategy extends Component {
@@ -35,9 +34,8 @@ class RandomStrategy extends Component {
     render(){
         return(
 
-            <Fragment>
+            <section className="strategy">
                 {/* Get the relevent Strategy info and pring it on the page! */}
-                <section className="strategy">
             
                     <div className="card">
                         {/* !!! ERROR HANDLE IN CASE NO STRATEGY!!!! this.props.errorMsg */ }
@@ -80,11 +78,7 @@ class RandomStrategy extends Component {
                         Draw random Strategy
                     </button>
             
-                </section>
-            
-                < About />
-            
-            </Fragment>
+            </section>
         )
     }
 }

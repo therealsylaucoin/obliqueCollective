@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 
+
 class RandomCollectiveStrategy extends Component {
     constructor(){
         super();
@@ -42,51 +43,54 @@ class RandomCollectiveStrategy extends Component {
 
     render(){
         return(
-            //Get the relevent Strategy info and pring it on the page!
-            <section className="randomCollective" id="randomCollective">
-
-                <div className="card">
-                    {/*The strategy: */}
-                    <h2>{this.state.randomCollectiveStrategy.strategy === '' 
-                        ? 'Draw a card from the Collective Strategies deck' 
-                        : this.state.randomCollectiveStrategy.strategy}
-                    </h2>
                 
-                    <div>
-                        {/* The contributor name */}
-                        <p>{this.state.randomCollectiveStrategy.author === '' 
-                            ? '' 
-                            : 'Contributed by: ' + this.state.randomCollectiveStrategy.author}
-                        </p>
-                
-                        {/* {The card number and deck total} */}
-                        <p>{this.state.cardnumber === null 
-                            ? '' 
-                            : 'Card no. ' + this.state.cardnumber + ' out of ' + this.state.totalDeckCount}
-                        </p>
+                <section className="randomCollective" id="randomCollective">
 
-                        {this.state.randomCollectiveStrategy.strategy !== ''
+                    <h3>Collective Strategies</h3>
+                    {/* //Get the relevent Strategy info and print it on the page! */}
+                    <div className="card">
+                        {/*The strategy: */}
+                        <h2>{this.state.randomCollectiveStrategy.strategy
+                            ? this.state.randomCollectiveStrategy.strategy
+                            : 'Draw a card from the Collective Strategies deck' }
+                        </h2>
+            
+                        <div>
+                            {/* The contributor name */}
+                            <p>{this.state.randomCollectiveStrategy.author
+                            ? 'Contributed by: ' + this.state.randomCollectiveStrategy.author
+                            : ''}
+                            </p>
+            
+                            {/* {The card number and deck total} */}
+                            <p>{this.state.cardnumber
+                            ? 'Card no. ' + this.state.cardnumber + ' out of ' + this.state.totalDeckCount
+                            : ''}
+                            </p>
+                            
+                            {this.state.randomCollectiveStrategy.strategy
                             ? <a
-                                href={`https://twitter.com/intent/tweet?text=${this.state.randomCollectiveStrategy.strategy} %23collectivestrategies&url=https://obliquecollective.netlify.app`}
-                                target="_blank" 
+                                href={`https://twitter.com/intent/tweet?text=${this.state.randomCollectiveStrategy.strategy} %23collectivestrategies&url=https://             obliquecollective.netlify.app`}
+                                target="_blank"
                                 rel="noreferrer"
-                                aria-label="Post to Twitter" 
+                                aria-label="Post to Twitter"
                                 >
-                                    < FaTwitter/>
-                                </a>
+                                < FaTwitter/>
+                            </a>
                             : null}
-
+            
+                        </div>
+            
                     </div>
-
-                </div>
-
-                <button onClick={() => {
-                    this.handleClick(this.props.array)}}>
-
+            
+                    <button onClick={() => {
+                        this.handleClick(this.props.array)}}>
+            
                         Draw random Collective Strategy
-                </button>
-                
-            </section>
+                    </button>
+            
+                </section>
+            
         )
     }
 }
