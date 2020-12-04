@@ -1,7 +1,8 @@
 .modal {
     color: $blue;
     position: absolute;
-    right: -3%;
+    right: -2.5%;
+    border: 2px solid $black;
 
     button {
         min-width: 100px;

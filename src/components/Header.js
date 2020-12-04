@@ -61,14 +61,14 @@ class NavItems extends Component {
                 
                 <ul>
                 
+                    <li>
+                        <a href="#randomCollective">Collective Strategies</a>
+                    </li>
                 
                     <li>
                         <a href="#intro">Add to Deck</a>
                     </li>
                 
-                    <li>
-                        <a href="#randomCollective">Collective Strategies</a>
-                    </li>
 
                     <li>
                         <a href="#about">About</a>
