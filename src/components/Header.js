@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-
+//Create component!
 class Header extends Component {
     constructor(){
         super();
@@ -25,19 +25,14 @@ class Header extends Component {
 
                     {/* Expression to display the nav   */}
                     {this.state.showNav
-                        ? < NavItems click={this.handleClick}/> 
-                        :   <div>
-
-                                <label className="srOnly">
-                                    Menu
-                                </label>
-                                <button 
-                                    onClick={this.handleClick}>
-                                    < FaBars  />
-                                </button>
-
-                            </div>}
-                        
+                        ?   < NavItems 
+                                click={this.handleClick}/> 
+                        :   <button 
+                                aria-label="Menu"
+                                onClick={this.handleClick}>
+                                < FaBars  />
+                            </button>
+                    }
                     
                 </div>
                 
@@ -48,15 +43,17 @@ class Header extends Component {
     }
 }
 
-
+//Create Nav component!
 class NavItems extends Component {
-
     render(){
         return(
 
             <nav>
-                <button onClick={this.props.click}>
-                < FaTimes />
+
+                <button 
+                    aria-label="close menu"
+                    onClick={this.props.click}>
+                    < FaTimes />
                 </button>
                 
                 <ul>

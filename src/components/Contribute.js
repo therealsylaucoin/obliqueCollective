@@ -3,51 +3,55 @@ import firebase from '../firebase.js';
 import RandomCollectiveStrategy from './RandomCollectiveStrategy.js';
 import Modal from './Modal.js';
 
-
+//Create component!
 class Contribute extends Component{
     constructor() {
         super();
         this.state = {
-            //empty array in which collective cards will be pushed 
+            //array to push Collective Strategies 
             strategyCollectiveArray: [],
-            //An empty array from which a random collective card will be drawn 
+            //array from which a random collective card will be drawn 
             strategyCollectiveApproved: [],
             author: '',
             strategy: '',
-            //showModal state which will change from false to true to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
+            //showModal state which will toggle to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
             showModal: false,
+            //placeholder text for form - will setState once strategy is submitted
             placeholder: 'Write your strategy here (maximum 100 characters)'
         }
     }
 
     componentDidMount(){
+        //Make reference to Firebase database
         //Store the database reference in a variable
         const dbref = firebase.database().ref();
-        //Obtain the data object from the Firebase using 'value' and the val(Firebase method and setState to that array
+        //Obtain the data object from the Firebase using 'value' and the val (Firebase method) and setState to that array
         dbref.on('value', (data) => {
             const dbResult = data.val();
-             //GETTING AN OBJECT - Let's turn it into an array with onl;ytheinformation we need: The values!
+            //GETTING AN OBJECT - Obtain an array with the information we need: The values!
             //using Object.values to get only the values :)
             const dbArray = Object.values(dbResult);
             //SetState of the array to the array obtained by convertingthefirebase data object (only the values)
             this.setState({
             strategyCollectiveArray: dbArray
             })
+            //Call the filterStrategies function (declared below)
             this.filterStrategies();
         })
     }
 
     //function to filter the array and only get the approved cards (aka, approval = true)
+    //We only want the user to draw from the approved cards
     filterStrategies = () => {
-        //store the approved strategies
+        //Use filter() to get cards with approved:true - store the approved strategies
         const approvedStrategies = this.state.strategyCollectiveArray.filter((strategy) => {
         return strategy.approved === true
         })
+        //set state with the array containign only approved strategies
         this.setState({
             strategyCollectiveApproved: approvedStrategies
         })
     }
-
 
     // Grab the input value of name when the user types and set the state
     authorInput = (input) => {
@@ -67,8 +71,9 @@ class Contribute extends Component{
     pushToFirebase = () => {
         //Make reference to the database
         const dbref = firebase.database().ref();
-        // push the author and strategy as an object
-        //Because the author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
+        //push the author and strategy as an object
+        //author name is optional, if the user does not enter their name, the word Anonymous will be pushed.
+        //approved = false, sicne the strategies need to be approved
         dbref.push({
             approved: false,
             author: this.state.author === '' 
@@ -81,12 +86,12 @@ class Contribute extends Component{
             strategy: '',
             author: '',
             showModal: this.state.showModal === false ? true : false,
+            //set state for placeholder, which will display a message to the user upon submission
             placeholder: 'Thank you for your submission. Your strategy will be reviewed within the next 24hrs. Once approved, it will be available in the Collective Strategies deck.'
         })
     }
 
-
-    //declare a function that will change the state of showModal 
+    //declare a function that will toggle the state of showModal 
     modalToggle = (e) =>{
         e.preventDefault();
         setTimeout(() => {
@@ -95,7 +100,6 @@ class Contribute extends Component{
             })
         }, 100)
     }
-
 
     render(){
         return(
@@ -146,17 +150,17 @@ class Contribute extends Component{
                             </textarea>
 
 
-                            <button onClick={this.modalToggle}>
+                            <button onClick={this.modalToggle}
+                                >
                                 Add strategy to deck
                             </button>
 
-                            {/* EXPRESSION TO DISPLAY MODA? based on the state*/}
+                            {/* Expression to display the modal based on the state*/}
                             {this.state.showModal
                             ?  < Modal
                                     strategy={this.state.strategy}
                                     toggle={this.modalToggle}
                                     pushToFirebase={this.pushToFirebase}/>
-
                             : null}
 
                         </form>
@@ -205,16 +209,3 @@ class Contribute extends Component{
 
 
 export default Contribute;
-
-
-//Syl
-//Dumb it down to make it more complicated.
-//What must stay? Get rid of the rest. 
-//Listen to your favourite song. 
-//Call a friend, but talk about something else.
-//Check on your plants.
-
-
-
-
-

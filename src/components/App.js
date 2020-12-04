@@ -6,7 +6,7 @@ import Contribute from './Contribute.js';
 import About from './About.js'
 import Footer from './Footer.js';
 
-
+//Pseudo Code
 // Oblique Strategies:
 // 1. SETUP: The app state is an empty array, so that later we can set the state to the array we will get from the API call
 // In componentDidMount - Make call to the oblique strategies API to get an array of all the cards. setState to the new array
@@ -24,16 +24,16 @@ import Footer from './Footer.js';
 // 		Strategy (text box - required)
 // 		Submit button
 // 	On submit, the createdCard object is pushed into the existing cards array (on Firebase)
-// 	(Give these cards a distinctive look (background colour, perhaps) to visually differenciate them from the orignal cards in that deck)
 
 
+//Create App!
 class App extends Component {
   constructor() {
     super();
     this.state = {
-        //empty array from which a random card will be draw
+        //array from which a random card will be drawn
         strategyArray: [],
-        //Empty error object for error handling - if the result is undefined, set state for the rror and pass it as props to RandomStrategy
+        //error object for error handling - if the result is undefined, set state for the error and pass it as props to the RandomStrategy component.
         errorApi: {
           author: '',
           cardnumber: null, 
@@ -42,7 +42,7 @@ class App extends Component {
     }
   }
 
-//Call the Oblique strategy API to get all the strategies
+  //Call the Oblique strategy API to get all the strategies
   componentDidMount(){
     Axios({
         url: 'https://proxy.hackeryou.com',
@@ -57,15 +57,14 @@ class App extends Component {
         }
 
     }).then((result) => {
-
-        // If successful, setState to the array
+        // If successful, setState of the array
         this.setState({
             strategyArray: result.data
         })
         
       //If unsuccessful:
     }).catch(() => {
-      //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop to random strategy.
+      //Have an error message that can be displayed on the card is the API call fails. Pass it as a prop to the RandomStrategy component.
       this.setState({
         errorApi: {
           author: 'Unavailable',
@@ -80,7 +79,6 @@ class App extends Component {
     return (
 
       <div className="app">
-
 
       < Header />
 

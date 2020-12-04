@@ -2,26 +2,25 @@ import { Component } from 'react';
 import { FaTwitter } from 'react-icons/fa';
 import { AnimateKeyframes } from "react-simple-animate";
 
-
+//Create component!
 class RandomCollectiveStrategy extends Component {
     constructor(){
         super();
         this.state = {
-            //Empty object to store the random strategy drawn from the deck
+            //object to store the random strategy drawn from the deck
             randomCollectiveStrategy: {
                 author: '',
                 strategy: ''},
             cardnumber: null, 
             totalDeckCount: null, 
+            //play state for animation
             play: true
         }
     }
 
-
-    //function to get a random card passing that random index + set state of the card
+    //function to get a random card passing random index + set state of the card
     handleClick = (array) => {
-
-         //Error handle in case we get no data from Firebase. 
+        //Error handle in case we get no data from Firebase. 
         if(array.length === 0){
             // setState to an error object in order to display the message on the card
             this.setState({
@@ -39,6 +38,7 @@ class RandomCollectiveStrategy extends Component {
                 randomCollectiveStrategy: array[randomIndex],
                 cardnumber: randomIndex + 1,
                 totalDeckCount: array.length,
+                //toggle state for animation
                 play: this.state.play ? false : true
             })
         }
@@ -101,8 +101,8 @@ class RandomCollectiveStrategy extends Component {
                     </AnimateKeyframes>
             
                     <button onClick={() => {
-                        this.handleClick(this.props.array)}}>
-            
+                        this.handleClick(this.props.array)}}
+                        >
                         Draw random Collective Strategy
                     </button>
             

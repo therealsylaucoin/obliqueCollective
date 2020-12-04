@@ -1,5 +1,4 @@
-
-//Using a function component for the About Section since it's purely presentational.
+//Function component for the About Section since it's purely presentational.
 
 const About = () => {
         return(
@@ -7,7 +6,6 @@ const About = () => {
             <section id="about" className="about">
 
                 <h3>About Oblique Strategies</h3>
-
 
                 <article className="wrapper">
                     
@@ -37,7 +35,6 @@ const About = () => {
                     </div> 
                     
                 </article>
-                
 
             </section>
 

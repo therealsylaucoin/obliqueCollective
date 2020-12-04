@@ -1,4 +1,4 @@
-//Using a function component for the Footer since it's purely presentational.
+//function component for the Footer since it's purely presentational.
 
 const Footer = () => {
         return(

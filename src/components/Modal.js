@@ -52,6 +52,12 @@ class Confirm extends Component {
             <div>
                 <p>You're about to submit this strategy:</p>
                 <h4>{this.props.strategy}</h4>
+                <button
+                //Click handler to push to user strategy to Firebase - push function passed to child as props
+                    onClick={this.props.pushToFirebase}>
+                        
+                        Okay
+                </button>
                 <button 
                     // Click handler - function to setState for showModal of App - passed to to chil as props
                     onClick={this.props.toggle}>
@@ -59,12 +65,6 @@ class Confirm extends Component {
                         Not Quite
                 </button>
 
-                <button
-                //Click handler to push to user strategy to Firebase - push function passed to child as props
-                    onClick={this.props.pushToFirebase}>
-                        
-                        Okay
-                </button>
 
                 
             </div>
