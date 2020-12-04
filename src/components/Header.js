@@ -26,7 +26,8 @@ class Header extends Component {
                     {/* Expression to display the nav   */}
                     {this.state.showNav
                         ? < NavItems click={this.handleClick}/> 
-                        :   <div className="navBurger">
+                        :   <div>
+
                                 <label className="srOnly">
                                     Menu
                                 </label>
@@ -68,15 +69,15 @@ class NavItems extends Component {
                     <li>
                         <a href="#randomCollective">Collective Strategies</a>
                     </li>
-                
-                    <li>
-                        <a href="https://twitter.com/sylaucoin" target="_blank" rel="noreferrer">Get In Touch</a>
-                    </li>
 
                     <li>
                         <a href="#about">About</a>
                     </li>
                 
+                    <li>
+                        <a href="https://twitter.com/sylaucoin" target="_blank" rel="noreferrer">Get In Touch</a>
+                    </li>
+
                 </ul>
                 
             </nav>

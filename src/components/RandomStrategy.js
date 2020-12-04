@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { FaTwitter } from 'react-icons/fa';
+import { AnimateKeyframes } from "react-simple-animate";
 
 class RandomStrategy extends Component {
     constructor(){
@@ -10,16 +11,16 @@ class RandomStrategy extends Component {
                 author: '',
                 cardnumber: null, 
                 edition: null, 
-                strategy: ''}
+                strategy: ''},
+                play: true
         }
     }
 
 
     //function to get a random card passing that random index + set state of the card
     handleClick = (array) => {
-        //setTimeout to 
-        setTimeout(() => { 
-              //Get a random index
+
+        //Get a random index
         let randomIndex = Math.floor((Math.random() * array.length))
         //setState of the randomStrategy 
         //Save the error message passed as props as a variable
@@ -29,9 +30,10 @@ class RandomStrategy extends Component {
             //Error Handling - If the result is undefined, set the state to the errorMsg passed as props.
             randomStrategy: array[randomIndex] !== undefined 
                 ? array[randomIndex] 
-                : errorMsg
+                : errorMsg,
+            play: this.state.play ? false : true
         })
-        }, 300);
+        
     }
 
 
@@ -40,6 +42,15 @@ class RandomStrategy extends Component {
 
             <section className="strategy">
                 {/* Get the relevent Strategy info and pring it on the page! */}
+
+                {/* Animation for the card */}
+                <AnimateKeyframes
+                    play={this.state.play} // Toggle when animation should start
+                    duration={1}
+                    keyframes={["opacity: 0", "opacity: 1"]}
+                    iterationCount="1"
+                    direction={this.state.play ? "normal" : "reverse"}
+                >
             
                     <div className="card">
                         {/* !!! ERROR HANDLE IN CASE NO STRATEGY!!!! this.props.errorMsg */ }
@@ -76,6 +87,8 @@ class RandomStrategy extends Component {
                         </div>
             
                     </div>
+
+                    </AnimateKeyframes>
             
                     <button onClick={() => {this.handleClick(this.props.strategyArray)}}>
                         

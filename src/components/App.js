@@ -5,7 +5,6 @@ import RandomStrategy from './RandomStrategy.js';
 import Contribute from './Contribute.js';
 import About from './About.js'
 import Footer from './Footer.js';
-import AnimationTest from './AnimationTest.js'
 
 
 // Oblique Strategies:
@@ -98,8 +97,6 @@ class App extends Component {
       </main>
 
       < Footer />
-
-      < AnimationTest />
 
     </div>
 

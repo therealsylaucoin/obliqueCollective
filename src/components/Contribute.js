@@ -113,6 +113,8 @@ class Contribute extends Component{
 
                             <p className="aboutIntro">I hope that you find this deck just as useful as the origin Oblique Strategies, and that you will be inclined to share a piece of advice. I've included some tips in  order to guide this process. </p>
 
+                            <p className="aboutIntro">Submissions will be added to the Collective Strategies deck once they've been approved. Submissions are reviewed daily, therefor you should see your strategy in the deck within 24hrs.  </p>
+
                         </div>
 
                         <form className="card">
@@ -120,7 +122,7 @@ class Contribute extends Component{
                             <label
                                 className="srOnly"
                                 htmlFor="contributor">
-                            Your name
+                                Your name
                             </label>
                             <input
                                 type="text"
@@ -133,7 +135,7 @@ class Contribute extends Component{
                             <label
                                 className="srOnly"
                                 htmlFor="strategy">
-                            Your strategy
+                                Your strategy
                             </label>
                             <textarea
                                 maxLength="100"
@@ -145,15 +147,16 @@ class Contribute extends Component{
 
 
                             <button onClick={this.modalToggle}>
-                            Add strategy to deck
+                                Add strategy to deck
                             </button>
 
-                            {/* EXPRESSION TO DISPLAY THE CORRECT MODAL aka is this.state. strategy === empty, display the error modal, else, display the confirm modal*/}
+                            {/* EXPRESSION TO DISPLAY MODA? based on the state*/}
                             {this.state.showModal
-                            ? < Modal
-                                strategy={this.state.strategy}
-                                toggle={this.modalToggle}
-                                pushToFirebase={this.pushToFirebase}/>
+                            ?  < Modal
+                                    strategy={this.state.strategy}
+                                    toggle={this.modalToggle}
+                                    pushToFirebase={this.pushToFirebase}/>
+
                             : null}
 
                         </form>
@@ -174,7 +177,7 @@ class Contribute extends Component{
 
                                 <h4>2. Be a generalist</h4>
                         
-                                <p>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who  the author is. Let's make our Collective deck just as accesible.</p>
+                                <p>Oblique Strategies are know for having a neutral and general tone that can apply to a large number of situations. They can be relatable to anyone who picks them up, without having to know who  the author is. Let's make our Collective deck just as accessible.</p>
 
                             </div>
                         

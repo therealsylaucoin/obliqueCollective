@@ -6,6 +6,7 @@ class Modal extends Component {
 
             <div className="modal card">
             {/* Show the correct modal based on the tstate(props) of the strategy aka, if its empty, lets show the error modal, if its not empty, lets show the confirm modal */}
+            
             {
                 this.props.strategy === ''
                     ? < Error 
@@ -25,7 +26,6 @@ class Modal extends Component {
 
 //Error message for when the user has not entered any text in the strategy but clicks the button
 class Error extends Component {
-    //clickHandle to close the modal
 
     render() {
         return (
