@@ -563,6 +563,7 @@ footer {
 .modal {
   color: #0034AD;
   position: absolute;
+  top: -2%;
   right: -2.5%;
   border: 2px solid #0A0908;
 }

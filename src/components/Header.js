@@ -37,6 +37,7 @@ class Header extends Component {
                 </div>
                 
                 <h1 >Oblique Strategies</h1>
+                <p>Encouraging lateral thinking.</p>
 
             </header>
         )
