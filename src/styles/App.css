@@ -352,9 +352,9 @@ header button {
   background-color: #0A0908;
   color: #f0f3f5;
   position: fixed;
-  top: 10px;
   left: 0;
   z-index: 20;
+  padding: 5px 5px 2px;
   margin: 5px !important;
 }
 
@@ -429,10 +429,6 @@ footer {
 .about {
   padding: 50px 0;
   background-color: #f0f3f5;
-}
-
-.about h3 {
-  margin: 25px 0;
 }
 
 .about article {
@@ -653,6 +649,9 @@ footer {
 }
 
 @media (max-width: 800px) {
+  header h1 {
+    font-size: 3rem;
+  }
   .contribute article {
     height: -webkit-fit-content;
     height: -moz-fit-content;

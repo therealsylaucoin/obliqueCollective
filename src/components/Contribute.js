@@ -107,7 +107,7 @@ class Contribute extends Component{
 
                 <div id="intro">
                     
-                    <h2>Add to Collective Strategies</h2>
+                    <h2 className="wrapper">Add to Collective Strategies</h2>
                 
                     <div className="intro wrapper" >
 
