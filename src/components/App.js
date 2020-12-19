@@ -1,30 +1,10 @@
 import { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Header from './Header.js';
-import RandomStrategy from './RandomStrategy.js';
+import Strategy from './Strategy.js';
 import Contribute from './Contribute.js';
 import About from './About.js'
 import Footer from './Footer.js';
-
-//Pseudo Code
-// Oblique Strategies:
-// 1. SETUP: The app state is an empty array, so that later we can set the state to the array we will get from the API call
-// In componentDidMount - Make call to the oblique strategies API to get an array of all the cards. setState to the new array
-// Declare a getRandom function in order to be able to obtain a randomIndex and pass that into a function that will draw a random card.
-
-// 2. User clicks on "draw card" button (event handler on the button that calls a drawCard function)
-// 3. The "draw card" button calls the drawCard function (passing it the randomIndex as an argument) in order to obtain a single random card (setState to the random card - an object)
-// 5. The random card is displayed on the page (render).
-// 6. The user has the option to draw again, by clicking the "draw card" button which will call the function again.
-
-// Stretch Goals:
-// 1. Allow users to create their own strategies and add them to a deck which is stored on Firebase (import JSON file of original deck):
-// 	"Contribute to collective deck" a tag brings user to a creation form. Form includes:
-// 		Author/Name (text field - optional)
-// 		Strategy (text box - required)
-// 		Submit button
-// 	On submit, the createdCard object is pushed into the existing cards array (on Firebase)
-
 
 //Create App!
 class App extends Component {
@@ -44,7 +24,7 @@ class App extends Component {
 
   //Call the Oblique strategy API to get all the strategies
   componentDidMount(){
-    Axios({
+    axios({
         url: 'https://proxy.hackeryou.com',
         method: 'GET',
         responseType: 'json',
@@ -84,14 +64,16 @@ class App extends Component {
 
       <main>
 
-        < RandomStrategy
-          strategyArray={this.state.strategyArray}
-          errorMsg={this.state.errorApi}/>
+        < Strategy 
+          coverCard='Over One Hundred Worthwhile Dilemmas'
+          errorMsg={this.state.errorApi}
+          cardArray={this.state.strategyArray}
+        />
       
         < Contribute />
 
         < About />
-          
+      
       </main>
 
       < Footer />
@@ -103,3 +85,8 @@ class App extends Component {
 }
 
 export default App;
+
+
+//pass in as prop (coverCard) = 'Over One Hundred Worthwhile Dilemmas'
+//and 
+//'Draw a card from the Collective Strategies deck'

@@ -73,6 +73,7 @@ button {
 }
 
 .card {
+    max-width: 80vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -102,6 +103,10 @@ button {
     * {
         margin: 5px;
     }
+}
+
+main {
+    background-color: $black;
 }
 
 

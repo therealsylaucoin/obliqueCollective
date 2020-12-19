@@ -31,6 +31,14 @@ header {
         text-align: left;
     }
 
+    p {
+        a {
+            padding: 5px;
+            width: fit-content;
+            display: inline;
+        }
+    }
+
     nav {
         background-color: $black;
         opacity: 0.9;
@@ -62,5 +70,7 @@ header {
 
 footer {
     padding: 15px 0;
-
+    a {
+        padding: 5px;
+    }
 }

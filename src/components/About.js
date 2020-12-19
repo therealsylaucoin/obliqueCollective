@@ -1,5 +1,4 @@
-//Function component for the About Section since it's purely presentational.
-
+//Provides information about Oblique Strategies as a concept
 const About = () => {
         return(
 
@@ -22,11 +21,11 @@ const About = () => {
                     
                         <blockquote>They can be used as a pack (a set of possibilities being continuously reviewed in the mind) or by drawing a single card from the shuffled pack when a dilemma occurs in a working situation. In this case, the card is trusted even if its appropriateness is quite unclear. They are not final, as new ideas will present themselves, and others will become self-evident.</blockquote>
 
-                        <p>Photos of the original handwritten cards can be found in <a href="https://www.brainpickings.org/2014/01/22/brian-eno-visual-music-oblique-strategies/" target="_blank" rel="noreferrer">this article</a>.</p>
-
                     </div>
                 
                     <div>
+                        
+                        <p>Photos of the original handwritten cards can be found in <a href="https://www.brainpickings.org/2014/01/22/brian-eno-visual-music-oblique-strategies/" target="_blank" rel="noreferrer">this article</a>.</p>
                         
                         <p>The cards are open-ended but offer direct advice.</p>
 

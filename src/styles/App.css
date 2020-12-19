@@ -296,6 +296,7 @@ button {
 }
 
 .card {
+  max-width: 80vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -333,6 +334,10 @@ button {
   margin: 5px;
 }
 
+main {
+  background-color: #0A0908;
+}
+
 header, footer {
   background-color: #0A0908;
   color: #f0f3f5;
@@ -362,6 +367,14 @@ header a {
   display: block;
   width: 200px;
   text-align: left;
+}
+
+header p a {
+  padding: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: inline;
 }
 
 header nav {
@@ -410,8 +423,11 @@ footer {
   padding: 15px 0;
 }
 
+footer a {
+  padding: 5px;
+}
+
 .strategy {
-  background-color: #0A0908;
   color: #f0f3f5;
   padding: 50px 0;
 }
@@ -543,12 +559,11 @@ footer {
 
 .randomCollective {
   background-color: #d1f444;
-  padding: 50px 0;
+  padding-top: 50px;
 }
 
 .randomCollective h3 {
   color: #0A0908;
-  padding-bottom: 50px;
 }
 
 .randomCollective button {

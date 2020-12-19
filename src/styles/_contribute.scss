@@ -65,11 +65,10 @@
 
 .randomCollective {
     background-color: $yellow;
-    padding: 50px 0;
+    padding-top: 50px;
 
     h3 {
         color: $black;
-        padding-bottom: 50px;
     }
 
     button {
@@ -81,5 +80,4 @@
             background-color: $blue;
         }
     }
-
 }

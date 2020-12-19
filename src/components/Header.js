@@ -35,9 +35,14 @@ class Header extends Component {
                     }
                     
                 </div>
-                
-                <h1 >Oblique Strategies</h1>
-                <p>Encouraging lateral thinking.</p>
+
+                <div className="wrapper">
+
+                    <h1>Oblique Strategies</h1>
+                    <h2>Encouraging lateral thinking.</h2>
+                    <p>How to use: To approach a problem with a new outlook, pick a random card from the original Oblique Strategies deck (or from the Collective Strategies contributed by users) and apply the proposed strategy to solve it. If you feel inspired to do so, please contribute a strategy of your own for others to benefit from in the future. Read more about the history of Oblique Strategies in the <a href="#about">About</a> section.</p>
+                </div>
+
 
             </header>
         )

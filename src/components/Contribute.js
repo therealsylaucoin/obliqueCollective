@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import firebase from '../firebase.js';
-import RandomCollectiveStrategy from './RandomCollectiveStrategy.js';
+import Strategy from './Strategy.js';
 import Modal from './Modal.js';
 
 //Create component!
@@ -12,12 +12,17 @@ class Contribute extends Component{
             strategyCollectiveArray: [],
             //array from which a random collective card will be drawn 
             strategyCollectiveApproved: [],
-            author: '',
-            strategy: '',
+            //error object for error handling - if the result is undefined, set state for the error and pass it as props to the RandomStrategy component.
+            errorApi: {
+                author: '',
+                cardnumber: null, 
+                edition: null, 
+                strategy: "Oops! It looks like we can't connect to our database right now. Tweet this message to let us know. Thx! @sylaucoin"},
             //showModal state which will toggle to display the alert message if strategy being submitted is empty, or a confirmation of the strategy being submitted when not empty.
             showModal: false,
-            //placeholder text for form - will setState once strategy is submitted
-            placeholder: 'Write your strategy here (maximum 100 characters)'
+            showThanks: false,
+            author: '',
+            strategy: '',
         }
     }
 
@@ -53,17 +58,10 @@ class Contribute extends Component{
         })
     }
 
-    // Grab the input value of name when the user types and set the state
-    authorInput = (input) => {
+    // Grab the input value of name or strategy when the user types and set the state
+    grabInput = (input) => {
         this.setState ({
-            author: input.target.value 
-        })
-    }
-
-    // Grab the input value of strategy when the user types and set the state
-    strategyInput = (input) => {
-        this.setState ({
-            strategy: input.target.value
+            [input.target.id]: input.target.value 
         })
     }
 
@@ -85,9 +83,7 @@ class Contribute extends Component{
         this.setState({
             strategy: '',
             author: '',
-            showModal: this.state.showModal === false ? true : false,
-            //set state for placeholder, which will display a message to the user upon submission
-            placeholder: 'Thank you for your submission. Your strategy will be reviewed within the next 24hrs. Once approved, it will be available in the Collective Strategies deck.'
+            showThanks: true
         })
     }
 
@@ -96,7 +92,8 @@ class Contribute extends Component{
         e.preventDefault();
         setTimeout(() => {
             this.setState({
-                showModal: this.state.showModal ? false : true
+            showModal : !this.state.showModal,
+            showThanks: false
             })
         }, 100)
     }
@@ -106,6 +103,17 @@ class Contribute extends Component{
             <section className="contribute">
 
                 <div id="intro">
+
+                    <div className="randomCollective">
+
+                        <h3>Collective Strategies</h3>
+                    
+                        < Strategy
+                            coverCard = 'Draw a card from the Collective Strategies deck'
+                            cardArray={this.state.strategyCollectiveApproved}
+                            errorMsg={this.state.errorApi}/>
+
+                    </div>
                     
                     <h2 className="wrapper">Add to Collective Strategies</h2>
                 
@@ -125,13 +133,13 @@ class Contribute extends Component{
 
                             <label
                                 className="srOnly"
-                                htmlFor="contributor">
+                                htmlFor="author">
                                 Your name
                             </label>
                             <input
                                 type="text"
-                                id="contributor"
-                                onChange={this.authorInput}
+                                id="author"
+                                onChange={this.grabInput}
                                 value={this.state.author}
                                 placeholder="Your name (optional)">
                             </input>
@@ -144,9 +152,9 @@ class Contribute extends Component{
                             <textarea
                                 maxLength="100"
                                 id="strategy"
-                                onChange={this.strategyInput}
+                                onChange={this.grabInput}
                                 value={this.state.strategy}
-                                placeholder={this.state.placeholder}>
+                                placeholder='Write your strategy here (maximum 100 characters)'>
                             </textarea>
 
 
@@ -156,8 +164,10 @@ class Contribute extends Component{
                             </button>
 
                             {/* Expression to display the modal based on the state*/}
-                            {this.state.showModal
+                            {this.state.showModal 
                             ?  < Modal
+                                    showModal={this.state.showModal}
+                                    showThanks={this.state.showThanks}
                                     strategy={this.state.strategy}
                                     toggle={this.modalToggle}
                                     pushToFirebase={this.pushToFirebase}/>
@@ -198,9 +208,6 @@ class Contribute extends Component{
                     </div>
                     
                 </div>
-
-                < RandomCollectiveStrategy 
-                    array={this.state.strategyCollectiveApproved}/> 
 
             </section>
         )
