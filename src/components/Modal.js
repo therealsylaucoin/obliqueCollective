@@ -80,22 +80,4 @@ class Confirm extends Component {
     }
 }
 
-//Error message for when the user has not entered any text in the strategy but clicks the button
-class Thanks extends Component {
-
-    render() {
-        return (
-            <div>
-                <p>Thank you for your submission. your strategy will be reviewed within the nexct 24 hours. Once approved, it will be available in the Collective Strategies deck.</p>
-                <button 
-                //  Click handler - function to setState for showModal of App - passed to to chil as props
-                    onClick={this.props.toggle}>
-                        Close
-                </button>
-
-            </div>
-        );
-    }
-}
-
 export default Modal;
