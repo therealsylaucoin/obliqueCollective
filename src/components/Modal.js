@@ -35,7 +35,7 @@ class Message extends Component {
                 {
                     this.props.showThanks 
 
-                    ? <p>Thank you for your submission. your strategy will be reviewed within the next 24 hours. Once approved, it will be available in the Collective Strategies deck.</p>
+                    ? <p>Thank you for your submission. Your strategy will be reviewed within the next 24 hours. Once approved, it will be available in the Collective Strategies deck.</p>
 
                     : <p>Oops! You must enter a strategy in order to contribute.</p>
                 }
