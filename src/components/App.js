@@ -25,17 +25,9 @@ class App extends Component {
   //Call the Oblique strategy API to get all the strategies
   componentDidMount(){
     axios({
-        url: 'https://proxy.hackeryou.com',
+        url: 'https://cors-anywhere.herokuapp.com/http://brianeno.needsyourhelp.org/all',
         method: 'GET',
         responseType: 'json',
-        params: {
-            reqUrl: 'http://brianeno.needsyourhelp.org/all',
-            proxyHeaders: {
-                'header_params': 'value'
-            },
-            xmlToJSON: false
-        }
-
     }).then((result) => {
         // If successful, setState of the array
         this.setState({
